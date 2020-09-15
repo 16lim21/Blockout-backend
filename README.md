@@ -9,3 +9,5 @@ Kind of an open-source version of this: https://reclaim.ai/ (implement more feat
 2. App that aggregates messages from all your messaging apps (facebook messenger, slack, discord, gitter, groupme, google hangouts etc.)
 
 3. A better culpa? Could take model of glassdoor where you have to submit a review (maybe like once a year) in order to view the reviews (since culpa has problem with not enough reviews). Maybe make a section for just freshman/entry classes so that people who are new can still see some reviews without having submitted any.
+
+4. Some note taking app
