@@ -5,3 +5,4 @@ djangorestframework @ file:///home/conda/feedstock_root/build_artifacts/djangore
 psycopg2 @ file:///opt/concourse/worker/volumes/live/c8a4b965-959f-4e6c-7792-4aa881d63c8d/volume/psycopg2_1594305121341/work
 pytz==2020.1
 sqlparse==0.3.1
+python-dotenv==0.14.0
