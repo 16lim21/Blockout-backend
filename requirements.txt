@@ -1,8 +1,8 @@
-asgiref @ file:///tmp/build/80754af9/asgiref_1594338739818/work
+asgiref==3.2.10
 certifi==2020.6.20
-Django @ file:///tmp/build/80754af9/django_1601563330930/work
-djangorestframework @ file:///home/conda/feedstock_root/build_artifacts/djangorestframework_1601312268278/work
-psycopg2 @ file:///opt/concourse/worker/volumes/live/c8a4b965-959f-4e6c-7792-4aa881d63c8d/volume/psycopg2_1594305121341/work
+django==3.1.2
+djangorestframework==3.12.1
+psycopg2==2.8.85
 pytz==2020.1
 sqlparse==0.3.1
 python-dotenv==0.14.0
