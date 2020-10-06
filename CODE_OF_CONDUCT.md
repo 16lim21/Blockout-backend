@@ -1,15 +1,3 @@
-# Contributing
-
-## Getting Started
-The best place to start contributing is by looking through the issues tab. Here, 
-you can file any bug reports or make suggestions for how we can improve the code and/or documentation
-
-## Filing Issues
-If you need to make suggestions for fixing a bug or code, please create an issue on the GitHub "issues". 
-
-## Contributing to Codebase
-
-
 ## Code of Conduct
 
 ### Our Pledge
