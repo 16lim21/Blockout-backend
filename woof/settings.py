@@ -82,10 +82,12 @@ WSGI_APPLICATION = 'woof.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+DB_NAME = os.getenv('DB_NAME')
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / os.getenv('DB_NAME'),
+        'NAME': BASE_DIR / DB_NAME,
     }
 }
 
