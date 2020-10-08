@@ -5,6 +5,7 @@
 ![GitHub issues](https://img.shields.io/github/issues-raw/16lim21/Woof)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/16lim21/Woof)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/16lim21/Woof/Django%20CI)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
 
 # What is Woof?
 Woof is an application that will aggregate messages from all your messaging apps (facebook messenger, slack, discord, gitter, groupme, google hangouts etc.) From Woof, a user will ideally be able to send and receive messages from all connected messaging applications. The name is an homage to the WUPHF.com idea in the office. 
