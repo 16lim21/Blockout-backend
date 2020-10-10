@@ -5,6 +5,7 @@
 ![GitHub issues](https://img.shields.io/github/issues-raw/16lim21/Woof)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/16lim21/Woof)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/16lim21/Woof/Django%20CI)
+![Codecov](https://img.shields.io/codecov/c/github/16lim21/Woof)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
 
 # What is Woof?
