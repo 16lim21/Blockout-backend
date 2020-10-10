@@ -34,12 +34,5 @@ jobs:
       env:
         SECRET_KEY: ${{ secrets.SECRET_KEY }}
         DB_NAME: ${{ secrets.DB_NAME }}
-
-  codecov:
-  
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Upload
-        run: codecov
+    - name: Upload to codecov
+      run: codecov
