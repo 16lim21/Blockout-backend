@@ -17,8 +17,8 @@ When submitting pull requests make sure that you follow these rules:
 3. Create a branch for local development
 4. Install all dev dependencies from requirements-dev.txt
 5. Once you are done creating changes, use flake8 to check linting and black to help format your code
-  i. You can use pre-commit hooks to make this easier
-  ii. To do so, just run "pre-commit install"
-  iii. Now, all linting and formatting will be done before every git commit (all config files are included in this repo)
+    1. You can use pre-commit hooks to make this easier
+    2. To do so, just run "pre-commit install"
+    3. Now, all linting and formatting will be done before every git commit (all config files are included in this repo)
 6. Commit changes and push to Github
 7. Create a pull request through GitHub. 
