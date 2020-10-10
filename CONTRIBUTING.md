@@ -10,3 +10,15 @@ When submitting pull requests make sure that you follow these rules:
 3. Please include tests with anticipated behavior for your code.
 4. If your branch has conflicts with master, pull master into your fork.
 5. Make sure your features and changes are well documented in the code.
+
+### Getting Started
+1. Fork the repo into your personal GitHub
+2. Clone the fork locally using git clone
+3. Create a branch for local development
+4. Install all dev dependencies from requirements-dev.txt
+5. Once you are done creating changes, use flake8 to check linting and black to help format your code
+  i. You can use pre-commit hooks to make this easier
+  ii. To do so, just run "pre-commit install"
+  iii. Now, all linting and formatting will be done before every git commit (all config files are included in this repo)
+6. Commit changes and push to Github
+7. Create a pull request through GitHub. 
