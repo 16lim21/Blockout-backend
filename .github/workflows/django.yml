@@ -30,7 +30,7 @@ jobs:
       run: python -m flake8 --ignore=E203,E266,E501,W503,F403 woof/
     - name: Run Tests
       run: |
-        python manage.py test tests/
+        python manage.py test woof/tests
       env:
         SECRET_KEY: ${{ secrets.SECRET_KEY }}
         DB_NAME: ${{ secrets.DB_NAME }}
