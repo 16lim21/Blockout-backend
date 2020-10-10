@@ -1,7 +1,6 @@
 # Woof
 ![GitHub](https://img.shields.io/github/license/16lim21/Woof)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/16lim21/Woof)
-![GitHub contributors](https://img.shields.io/github/contributors/16lim21/Woof)
 ![GitHub issues](https://img.shields.io/github/issues-raw/16lim21/Woof)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/16lim21/Woof)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/16lim21/Woof/Django%20CI)
