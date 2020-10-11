@@ -1,8 +1,8 @@
-name: Django CI
+name: NodeJS CI
 
 on:
   push:
-    branches: [ master, js ]
+    branches: [ master ]
   pull_request:
     branches: [ master ]
 
