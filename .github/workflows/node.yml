@@ -23,11 +23,10 @@ jobs:
     - name: Install Dependencies
       run: |
         npm ci
-        npm install istanbul --save-dev
     - name: Lint code with eslint
       run: npx eslint --debug
     - name: Run Tests
       run: |
-        istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec
+        npx nyc mocha --report lcovonly -- -R spec
     - name: Upload to codecov
       run: npx codecov
