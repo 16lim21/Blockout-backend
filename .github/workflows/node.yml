@@ -27,6 +27,7 @@ jobs:
       run: npx eslint --debug
     - name: Run Tests
       run: |
-        npx nyc mocha --report lcovonly -- -R spec
+        npx nyc mocha
+        npx nyc report --reporter=text-lcov > coverage.lcov
     - name: Upload to codecov
       run: npx codecov
