@@ -21,5 +21,6 @@ When submitting pull requests make sure that you follow these rules:
 3. Create a branch for local development
 4. Install all dev dependencies from package-lock.json
 5. Once you are done creating changes, pre-commit hooks will be run to automatically lint and format all code.
+    1. Run "npx mrm lint-staged" first. 
 6. Commit changes and push to Github
 7. Create a pull request through GitHub.
