@@ -4,7 +4,8 @@
   "description": "![GitHub](https://img.shields.io/github/license/16lim21/Woof) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/16lim21/Woof) ![GitHub issues](https://img.shields.io/github/issues-raw/16lim21/Woof) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/16lim21/Woof) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/16lim21/Woof/Django%20CI) ![Codecov](https://img.shields.io/codecov/c/github/16lim21/Woof) [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./index.js",
+    "test": "npx nyc mocha",
     "dev": "nodemon ./index.js"
   },
   "repository": {
@@ -19,6 +20,7 @@
   "homepage": "https://github.com/16lim21/Woof#readme",
   "devDependencies": {
     "codecov": "^3.8.0",
+    "dotenv": "^8.2.0",
     "eslint": "^7.11.0",
     "eslint-config-standard": "^14.1.1",
     "eslint-plugin-import": "^2.22.1",
@@ -28,6 +30,7 @@
     "eslint-plugin-standard": "^4.0.1",
     "husky": "^4.3.0",
     "lint-staged": "^10.4.0",
+    "mocha": "^8.1.3",
     "nodemon": "^2.0.4",
     "nyc": "^15.1.0",
     "pre-commit": "^1.2.2",
@@ -36,7 +39,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "facebook-chat-api": "^1.8.0",
-    "mocha": "^8.1.3"
+    "mongoose": "^5.10.9"
   },
   "husky": {
     "hooks": {
