@@ -30,8 +30,8 @@ jobs:
         npx nyc mocha
         npx nyc report --reporter=text-lcov > coverage.lcov
       env:
-        process.env.NODE_ENV: production
-        process.env.MONGODB_URI: ${{secrets.MONGODB_URI}}
-        process.env.PORT: ${{secrets.PORT}}
+        NODE_ENV: production
+        MONGODB_URI: ${{secrets.MONGODB_URI}}
+        PORT: ${{secrets.PORT}}
     - name: Upload to codecov
       run: npx codecov
