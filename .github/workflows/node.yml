@@ -25,12 +25,14 @@ jobs:
         npm ci
     - name: Lint code with eslint
       run: npx eslint --debug
+    - name: create env file
+      run: |
+        touch .env
+        echo MONGDB_URI =${{ secrets.MONGODB_URI }} >> .env
+        echo PORT =${{ secrets.PORT }} >> .env
     - name: Run Tests
       run: |
         npx nyc mocha
         npx nyc report --reporter=text-lcov > coverage.lcov
-      env:
-        MONGODB_URI: ${{ secrets.MONGODB_URI }}
-        PORT: ${{ secrets.PORT }}
     - name: Upload to codecov
       run: npx codecov
