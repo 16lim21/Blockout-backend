@@ -29,5 +29,8 @@ jobs:
       run: |
         npx nyc mocha
         npx nyc report --reporter=text-lcov > coverage.lcov
+      env:
+        MONGODB_URI: ${{ secrets.MONGODB_URI }}
+        PORT: ${{ secrets.PORT }}
     - name: Upload to codecov
       run: npx codecov
