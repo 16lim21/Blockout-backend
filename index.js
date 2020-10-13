@@ -7,22 +7,23 @@ const messenger = require("./routers/messenger");
 const url = process.env.MONGODB_URI;
 
 mongoose
-  .connect(url, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-  })
-  .then(() => {
-    console.log("Connected to MongoDB");
-    const app = express();
-    app.use(express.json());
-    app.use("/api", messenger);
+    .connect(url, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useFindAndModify: false,
+    })
+    .then(() => {
+        console.log("Connected to MongoDB");
+    })
+    .catch((error) =>
+        console.log(`Error connecting to MongoDB: ${error.message}`)
+    );
 
-    const PORT = process.env.PORT || 3001;
-    app.listen(PORT, () => {
-      console.log(`Started server on port ${PORT}`);
-    });
-  })
-  .catch((error) =>
-    console.log(`Error connecting to MongoDB: ${error.message}`)
-  );
+const app = express();
+app.use(express.json());
+app.use("/api", messenger);
+
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+    console.log(`Started server on port ${PORT}`);
+});

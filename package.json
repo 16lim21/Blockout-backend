@@ -47,7 +47,7 @@
     }
   },
   "lint-staged": {
-    "*.js": "npx nyc mocha && eslint --cache --fix",
+    "*.js": "npx nyc mocha --exit",
     "*.{js,css,md}": "prettier --write"
   }
 }
