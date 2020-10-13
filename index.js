@@ -1,29 +1,31 @@
-// Creating simple REST API following this tutorial https://rahmanfadhil.com/express-rest-api/
-require("dotenv").config();
-const express = require("express");
-const mongoose = require("mongoose");
-const messenger = require("./routers/messenger");
+console.log("hello world");
 
-const url = process.env.MONGODB_URI;
+// // Creating simple REST API following this tutorial https://rahmanfadhil.com/express-rest-api/
+// require("dotenv").config();
+// const express = require("express");
+// const mongoose = require("mongoose");
+// const messenger = require("./routers/messenger");
 
-mongoose
-    .connect(url, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useFindAndModify: false,
-    })
-    .then(() => {
-        console.log("Connected to MongoDB");
-    })
-    .catch((error) =>
-        console.log(`Error connecting to MongoDB: ${error.message}`)
-    );
+// const url = process.env.MONGODB_URI;
 
-const app = express();
-app.use(express.json());
-app.use("/api", messenger);
+// mongoose
+//     .connect(url, {
+//         useNewUrlParser: true,
+//         useUnifiedTopology: true,
+//         useFindAndModify: false,
+//     })
+//     .then(() => {
+//         console.log("Connected to MongoDB");
+//     })
+//     .catch((error) =>
+//         console.log(`Error connecting to MongoDB: ${error.message}`)
+//     );
 
-const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => {
-    console.log(`Started server on port ${PORT}`);
-});
+// const app = express();
+// app.use(express.json());
+// app.use("/api", messenger);
+
+// const PORT = process.env.PORT || 3001;
+// app.listen(PORT, () => {
+//     console.log(`Started server on port ${PORT}`);
+// });
