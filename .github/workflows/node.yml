@@ -26,8 +26,12 @@ jobs:
     - name: Lint code with eslint
       run: npx eslint --debug
     - name: Run Tests
+      env:
+        NODE_ENV: production
+        MONGODB_URI: ${{secrets.MONGODB_URI}}
+        PORT: ${{secrets.PORT}}
       run: |
-        npx nyc mocha
+        npx nyc mocha --exit
         npx nyc report --reporter=text-lcov > coverage.lcov
     - name: Upload to codecov
       run: npx codecov
