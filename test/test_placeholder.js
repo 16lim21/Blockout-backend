@@ -1,3 +1,4 @@
+// Followed tutorial from https://www.digitalocean.com/community/tutorials/test-a-node-restful-api-with-mocha-and-chai#a-better-test
 // Require the dev-dependencies
 const chai = require('chai')
 const chaiHttp = require('chai-http')
