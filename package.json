@@ -19,6 +19,8 @@
   },
   "homepage": "https://github.com/16lim21/Woof#readme",
   "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
     "codecov": "^3.8.0",
     "dotenv": "^8.2.0",
     "eslint": "^7.11.0",
@@ -47,7 +49,10 @@
     }
   },
   "lint-staged": {
-    "*.js": ["npx nyc mocha --exit", "eslint --cache --fix"],
+    "*.js": [
+      "npx nyc mocha --exit",
+      "eslint --cache --fix"
+    ],
     "*.{js,css,md}": "prettier --write"
   }
 }
