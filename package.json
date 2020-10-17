@@ -41,7 +41,8 @@
   "dependencies": {
     "express": "^4.17.1",
     "facebook-chat-api": "^1.8.0",
-    "mongoose": "^5.10.9"
+    "mongoose": "^5.10.9",
+    "socket.io": "^2.3.0"
   },
   "husky": {
     "hooks": {
