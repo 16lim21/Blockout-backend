@@ -33,3 +33,5 @@ const PORT = process.env.PORT || 3001
 http.listen(PORT, () => {
     console.log(`Started server on port ${PORT}`)
 })
+
+module.exports = app
