@@ -57,9 +57,16 @@
             "pre-commit": "lint-staged"
         }
     },
+    "mocha": {
+        "require": [
+            "@babel/register",
+            "server/test/ignore-utils.js",
+            "jsdom-global/register"
+        ]
+    },
     "lint-staged": {
         "**/test/*.js": [
-            "npx nyc mocha -r @babel/register -r server/test/ignore-utils.js -r jsdom-global/register --exit",
+            "npx nyc mocha --exit",
             "eslint --cache --fix"
         ],
         "*.{js,css,md,json}": "prettier --write"
