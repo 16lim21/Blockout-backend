@@ -1,10 +1,10 @@
 # Blockout
-![GitHub](https://img.shields.io/github/license/16lim21/Woof)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/16lim21/Woof)
-![GitHub issues](https://img.shields.io/github/issues-raw/16lim21/Woof)
-![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/16lim21/Woof)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/16lim21/Woof/Django%20CI)
-![Codecov](https://img.shields.io/codecov/c/github/16lim21/Woof)
+![GitHub](https://img.shields.io/github/license/16lim21/Blockout)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/16lim21/Blockout)
+![GitHub issues](https://img.shields.io/github/issues-raw/16lim21/Blockout)
+![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/16lim21/Blockout)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/16lim21/Blockout/Django%20CI)
+![Codecov](https://img.shields.io/codecov/c/github/16lim21/Blockout)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
 
 # What is Blockout?
