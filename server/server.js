@@ -36,7 +36,7 @@ app.use(
 
 // Define application routing
 const users = require("./routers/users");
-app.use("/api", users);
+app.use("/api", users.router);
 
 const blockout = require("./routers/blockout");
 app.use("/api", blockout);
