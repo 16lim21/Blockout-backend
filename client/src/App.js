@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
+import axios from "axios";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
 
 const responseGoogle = (response) => {
@@ -9,16 +10,31 @@ const responseGoogle = (response) => {
 
 const App = () => {
     const [loggedIn, setLogin] = useState(false);
-    const [token, setToken] = useState("");
 
     const logout = (response) => {
         setLogin(false);
-        setToken("");
+    };
+
+    let config = {
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
     };
 
     const login = (response) => {
         setLogin(true);
-        setToken(response.accessToken);
+        axios
+            .post(
+                process.env.REACT_APP_API_URL,
+                "idtoken=" + response.getAuthResponse().id_token,
+                config
+            )
+            .then((response) => {
+                console.log("Signed in as: " + response.data);
+            })
+            .catch((error) => {
+                console.log("Token not sent. Specific error: " + error.message);
+            });
     };
 
     return (
