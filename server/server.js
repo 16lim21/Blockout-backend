@@ -23,10 +23,16 @@ mongoose
 
 // Setup express app
 const express = require("express");
+const bodyParser = require("body-parser");
 const app = express();
 const http = require("http").createServer(app);
 
-app.use(express.json());
+app.use(bodyParser.json()); // Parse applicaiton/json
+app.use(
+    bodyParser.urlencoded({
+        extended: true,
+    })
+); //Parse application/x-www-form-urlencoded from tokenid
 
 // Define application routing
 const users = require("./routers/users");
