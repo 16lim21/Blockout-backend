@@ -21,6 +21,9 @@
 # Client Frontend
 client/README.md
 
+# Documentation
+docs/
+
 # misc
 **/.DS_Store
 **/.env.local

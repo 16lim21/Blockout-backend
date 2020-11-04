@@ -1,3 +1,7 @@
+/**
+ * This is the basic react frontend
+ * @exports App
+ */
 import React, { useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
@@ -7,20 +11,41 @@ import { GoogleLogin, GoogleLogout } from "react-google-login";
 const App = () => {
     const [loggedIn, setLogin] = useState(false);
 
+    /**
+     * Debugging function to log response
+     * @param {Object} response - the response object received from google login
+     */
     const responseGoogle = (response) => {
         console.log(response);
     };
 
+    /**
+     * Changes login state to so that front-end renders google login button
+     * @param {*} response - the response object received from google login
+     */
     const logout = (response) => {
         setLogin(false);
     };
 
+    /**
+     * Config json to be sent with token post request
+     * @type {object}
+     * @property headers - request headers
+     */
     let config = {
+        /**
+         * Request headers to be sent
+         * @property "Content-Type" - The content type of the request
+         */
         headers: {
             "Content-Type": "application/x-www-form-urlencoded",
         },
     };
 
+    /**
+     * Login function that signs user in and sends client token to backend
+     * @param {Object} response - The response object received from google login
+     */
     const login = (response) => {
         setLogin(true);
         axios
