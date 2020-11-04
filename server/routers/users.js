@@ -32,7 +32,7 @@ const getUser = (userid) => {
 // Post new user
 router.post("/users", (request, response) => {
     const userBody = {
-        _id: request.body.userid,
+        _id: request.body._id,
         name: request.body.name,
         email: request.body.email,
     };

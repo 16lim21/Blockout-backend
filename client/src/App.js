@@ -4,12 +4,12 @@ import "./App.css";
 import axios from "axios";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
 
-const responseGoogle = (response) => {
-    console.log(response);
-};
-
 const App = () => {
     const [loggedIn, setLogin] = useState(false);
+
+    const responseGoogle = (response) => {
+        console.log(response);
+    };
 
     const logout = (response) => {
         setLogin(false);
