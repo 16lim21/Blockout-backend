@@ -23,6 +23,7 @@ jobs:
     - name: Install Dependencies
       run: |
         npm ci
+        npm run postinstall
     - name: Lint code with eslint
       run: npx eslint --debug
     - name: Run Tests
@@ -31,6 +32,7 @@ jobs:
         MONGODB_URI: ${{secrets.MONGODB_URI}}
         PORT: ${{secrets.PORT}}
       run: |
+        npm link ./client/node_modules/react
         npx nyc mocha --recursive --exit
         npx nyc report --reporter=text-lcov > coverage.lcov
     - name: Upload to codecov
