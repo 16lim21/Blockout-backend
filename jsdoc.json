@@ -1,4 +1,5 @@
 {
+    "title": "Blockout Docs",
     "source": {
         "include": ["./server", "./client/src"],
         "includePattern": ".+\\.js(x)?$",
