@@ -7,6 +7,7 @@
         "start": "node ./server/server.js",
         "test": "npx nyc mocha './test/**/*.js' --exit",
         "dev": "nodemon ./server/server.js",
+        "client": "cd client && npm start",
         "postinstall": "cd client && npm install",
         "docs": "node_modules/.bin/jsdoc -c jsdoc.json README.md"
     },
@@ -43,6 +44,7 @@
         "jsdom-global": "^3.0.2",
         "lint-staged": "^10.4.0",
         "mocha": "^8.1.3",
+        "nock": "^13.0.4",
         "nodemon": "^2.0.4",
         "nyc": "^15.1.0",
         "pre-commit": "^1.2.2",

@@ -21,7 +21,7 @@ router.get('/', (request, response) => {
  * Handles get request for specific userid
  */
 router.get('/:id', (request, response) => {
-    getUser(request.params.id, response)
+    getUser(request.params.id)
         .then((user) => {
             if (user) {
                 response.json(user)
@@ -101,5 +101,6 @@ const deleteUser = (userid) => {
 module.exports = {
     router: router,
     getUser: getUser,
-    postUser: postUser
+    postUser: postUser,
+    deleteUser: deleteUser
 }
