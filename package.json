@@ -1,24 +1,25 @@
 {
-    "name": "woof",
+    "name": "Blockout",
     "version": "1.0.0",
-    "description": "woof api",
+    "description": "Blockout api",
     "main": "index.js",
     "scripts": {
         "start": "node ./server/server.js",
         "test": "npx nyc mocha './test/**/*.js' --exit",
         "dev": "nodemon ./server/server.js",
-        "postinstall": "cd client && npm install"
+        "postinstall": "cd client && npm install",
+        "docs": "node_modules/.bin/jsdoc -c jsdoc.json README.md"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/16lim21/Woof.git"
+        "url": "git+https://github.com/16lim21/Blockout.git"
     },
     "author": "",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/16lim21/Woof/issues"
+        "url": "https://github.com/16lim21/Blockout/issues"
     },
-    "homepage": "https://github.com/16lim21/Woof#readme",
+    "homepage": "https://github.com/16lim21/Blockout#readme",
     "devDependencies": {
         "@babel/core": "^7.12.3",
         "@babel/plugin-transform-runtime": "^7.12.1",
@@ -37,6 +38,7 @@
         "eslint-plugin-react": "^7.21.4",
         "eslint-plugin-standard": "^4.0.1",
         "husky": "^4.3.0",
+        "jsdoc": "^3.6.6",
         "jsdom": "^16.4.0",
         "jsdom-global": "^3.0.2",
         "lint-staged": "^10.4.0",
