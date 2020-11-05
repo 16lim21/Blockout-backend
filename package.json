@@ -9,7 +9,7 @@
         "dev": "nodemon ./server/server.js",
         "client": "cd client && npm start",
         "postinstall": "cd client && npm install",
-        "docs": "node_modules/.bin/jsdoc -c jsdoc.json README.md"
+        "docs": "node_modules/.bin/jsdoc -c jsdoc.json README.md && git add docs"
     },
     "repository": {
         "type": "git",
@@ -62,7 +62,8 @@
     },
     "husky": {
         "hooks": {
-            "pre-commit": "lint-staged"
+            "pre-commit": "lint-staged",
+            "pre-push": "npm run docs && git commit -m 'recompiling docs' "
         }
     },
     "mocha": {
