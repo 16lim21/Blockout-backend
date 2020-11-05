@@ -10,8 +10,7 @@ const { OAuth2Client } = require('google-auth-library')
 const router = express.Router()
 const user = require('./users')
 
-const client = new OAuth2Client(process.env.CLIENT_ID)
-
+const googleClient = new OAuth2Client(process.env.CLIENT_ID)
 /**
  * Token verification method
  * @function
@@ -19,7 +18,7 @@ const client = new OAuth2Client(process.env.CLIENT_ID)
  * @param {string} token - userid token sent from client frontend
  * @returns {Promise<TokenPayLoad>} payload - payload object that represents user information
  */
-const verify = async (token) => {
+const verify = async (client, token) => {
     const ticket = await client.verifyIdToken({
         idToken: token,
         audience: process.env.CLIENT_ID
@@ -62,7 +61,7 @@ router.post('/tokensignin', (request, response) => {
     response.set({
         'Access-Control-Allow-Origin': 'http://localhost:3000'
     })
-    verify(request.body.idtoken)
+    verify(googleClient, request.body.idtoken)
         .then((payload) => checkUser(payload))
         .then((result) => {
             response.json(result)
@@ -70,4 +69,8 @@ router.post('/tokensignin', (request, response) => {
         .catch(console.error)
 })
 
-module.exports = router
+module.exports = {
+    router: router,
+    verify: verify,
+    checkUser: checkUser
+}

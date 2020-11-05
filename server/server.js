@@ -46,7 +46,7 @@ const users = require('./routers/users')
 app.use('/api/users', users.router)
 
 const blockout = require('./routers/blockout')
-app.use('/api', blockout)
+app.use('/api', blockout.router)
 
 // Listen on specified port for express app
 const PORT = process.env.PORT || 3001
