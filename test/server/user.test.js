@@ -1,53 +1,69 @@
 // Followed tutorial from https://www.digitalocean.com/community/tutorials/test-a-node-restful-api-with-mocha-and-chai#a-better-test
-// Require the dev-dependencies
 const chai = require('chai')
 const chaiHttp = require('chai-http')
 const server = require('../../server/server')
 chai.should()
 chai.use(chaiHttp)
+const testId = '123456'
+
 // Our parent block
-describe('User', () => {
+describe('Testing User Database', () => {
     describe('/GET user', () => {
-        it('it should GET all the users', (done) => {
+        it('Should GET all the users', (done) => {
             chai.request(server)
                 .get('/api/users')
-                .end((err, res) => {
-                    if (err) {
-                        console.log(err)
+                .end((error, response) => {
+                    if (error) {
+                        console.log(error)
                         done()
                     }
-                    res.should.have.status(200)
-                    res.body.should.be.a('array')
-                    done()
-                })
-        })
-    })
-
-    describe('/POST user', () => {
-        it('it should POST a user ', (done) => {
-            chai.request(server)
-                .post('/api/users')
-                .set('content-type', 'application/json')
-                .send({
-                    _id: '123456',
-                    name: 'user3',
-                    email: 'user3@gmail.com'
-                })
-                .end((err, res) => {
-                    if (err) {
-                        console.log(err)
-                        done()
-                    }
-                    res.should.have.status(200)
-                    res.body.should.have.property('name')
-                    res.body.should.have.property('email')
+                    response.should.have.status(200)
+                    response.body.should.be.a('array')
                     done()
                 })
         })
     })
 
     describe('/GET/:id user', () => {
-        it('it should GET a user given the id', (done) => {
+        it('Should return an error for user id that does not exist', (done) => {
+            chai.request(server)
+                .get('/api/users/' + testId)
+                .end((error, response) => {
+                    if (error) {
+                        console.log(error)
+                    }
+                    response.should.have.status(404)
+                    response.body.should.have.property('error')
+                    done()
+                })
+        })
+    })
+
+    describe('/POST user', () => {
+        it('Should POST a user ', (done) => {
+            chai.request(server)
+                .post('/api/users')
+                .set('content-type', 'application/json')
+                .send({
+                    _id: testId,
+                    name: 'user3',
+                    email: 'user3@gmail.com'
+                })
+                .end((error, response) => {
+                    if (error) {
+                        console.log(error)
+                        done()
+                    }
+                    response.should.have.status(200)
+                    response.body.should.have.property('name')
+                    response.body.should.have.property('email')
+                    done()
+                })
+        })
+    })
+
+    describe('/GET/:id user', () => {
+        it('Should GET a user given the id', (done) => {
             chai.request(server)
                 .get('/api/users')
                 .end((err, res) => {
@@ -73,7 +89,7 @@ describe('User', () => {
     })
 
     describe('/PATCH/:id user', () => {
-        it('it should PATCH a user given the id', (done) => {
+        it('Should PATCH a user given the id', (done) => {
             chai.request(server)
                 .get('/api/users')
                 .end((err, res) => {
@@ -99,7 +115,7 @@ describe('User', () => {
     })
 
     describe('/DELETE/:id user', () => {
-        it('it should DELETE a user given the id', (done) => {
+        it('Should DELETE a user given the id', (done) => {
             chai.request(server)
                 .get('/api/users')
                 .end((err, res) => {
