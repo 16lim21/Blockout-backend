@@ -5,19 +5,15 @@
         "node": true,
         "mocha": true
     },
-    "extends": [
-        "plugin:react/recommended",
-        "standard"
-    ],
+    "extends": ["plugin:react/recommended", "standard"],
+    "ignorePatterns": "docs/**/*.js",
     "parserOptions": {
         "ecmaFeatures": {
             "jsx": true
         },
         "ecmaVersion": 12
     },
-    "plugins": [
-        "react"
-    ],
+    "plugins": ["react"],
     "rules": {
         "indent": ["error", 4]
     },
