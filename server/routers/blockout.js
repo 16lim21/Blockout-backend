@@ -32,9 +32,9 @@ const verify = async (client, token) => {
  * Checks if user exists in blockout database and creates one if not.
  * @function
  * @param {TokenPayLoad} payload - payload object that represents user information
- * @returns {Document} - Returns a document object representing the new/existing user
+ * @returns {Promise<Document>} - Returns the promise of a document object representing the new/existing user
  */
-const checkUser = (payload) => {
+const checkUser = async (payload) => {
     const userid = payload.sub
     return user
         .getUser(userid)

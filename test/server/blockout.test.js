@@ -1,7 +1,7 @@
 // Followed tutorial from https://www.digitalocean.com/community/tutorials/test-a-node-restful-api-with-mocha-and-chai#a-better-test
 const chai = require('chai')
 const blockout = require('../../server/routers/blockout')
-// const server = require('../../server/server')
+const users = require('../../server/routers/users')
 const assert = require('assert')
 const { OAuth2Client, LoginTicket } = require('google-auth-library')
 const nock = require('nock')
@@ -54,6 +54,29 @@ describe('Testing Blockout API', () => {
 
         if (result) {
             assert.strictEqual(result, payload)
+        }
+    })
+
+    it('Should check database for user, create the new user, then delete it', async () => {
+        const payload = {
+            aud: 'aud',
+            sub: 'sub',
+            iss: 'iss',
+            iat: 1514162443,
+            exp: 1514166043,
+            name: 'test_user',
+            email: 'test@gmail.com'
+        }
+        const result = await blockout.checkUser(payload)
+
+        if (result) {
+            assert.strictEqual(result._id, payload.sub)
+            users
+                .deleteUser(payload.sub)
+                .then(() => {
+                    console.log('deleted user')
+                })
+                .catch((error) => console.log(error))
         }
     })
 })

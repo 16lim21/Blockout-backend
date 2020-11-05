@@ -66,22 +66,22 @@ describe('Testing User Database', () => {
         it('Should GET a user given the id', (done) => {
             chai.request(server)
                 .get('/api/users')
-                .end((err, res) => {
-                    if (err) {
-                        console.log(err)
+                .end((error, response) => {
+                    if (error) {
+                        console.log(error)
                         done()
                     }
                     chai.request(server)
-                        .get('/api/users/' + res.body.pop()._id)
-                        .end((err, res) => {
-                            if (err) {
-                                console.log(err)
+                        .get('/api/users/' + response.body.pop()._id)
+                        .end((error, response) => {
+                            if (error) {
+                                console.log(error)
                                 done()
                             }
-                            res.should.have.status(200)
-                            res.body.should.have.property('name')
-                            res.body.should.have.property('email')
-                            res.body.should.have.property('name', 'user3')
+                            response.should.have.status(200)
+                            response.body.should.have.property('name')
+                            response.body.should.have.property('email')
+                            response.body.should.have.property('name', 'user3')
                             done()
                         })
                 })
