@@ -1,7 +1,7 @@
 // Followed tutorial from https://www.digitalocean.com/community/tutorials/test-a-node-restful-api-with-mocha-and-chai#a-better-test
 const chai = require('chai')
-const blockout = require('../../server/routers/blockout')
-const users = require('../../server/routers/users')
+const auth = require('../../server/api/routes/auth')
+const users = require('../../server/api/routes/users')
 const assert = require('assert')
 const { OAuth2Client, LoginTicket } = require('google-auth-library')
 const nock = require('nock')
@@ -49,7 +49,7 @@ describe('Testing Blockout API', () => {
             return new LoginTicket('c', payload)
         }
 
-        const result = await blockout.verify(client, idToken)
+        const result = await auth.verify(client, idToken)
         scope.done()
 
         if (result) {
@@ -67,7 +67,7 @@ describe('Testing Blockout API', () => {
             name: 'test_user',
             email: 'test@gmail.com'
         }
-        const result = await blockout.checkUser(payload)
+        const result = await auth.checkUser(payload)
 
         if (result) {
             assert.strictEqual(result._id, payload.sub)
