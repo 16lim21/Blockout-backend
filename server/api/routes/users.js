@@ -1,27 +1,27 @@
 /**
  * Users module to handle interacting with user database
- * @module routers/users
+ * @module api/routes/users
  * @requires express
  * @exports router - express router to handle api calls to /api/users
  * @exports getUser - getUser functionality
  * @exports postUser - postUser functionality
  */
 const express = require('express')
-const User = require('../models/user')
 const router = express.Router()
+const UserService = require('../../services/userService')
 
 /**
  * Handles get request for all users
  */
 router.get('/', (request, response) => {
-    User.find({}).then((user) => response.json(user))
+    UserService.findAllUsers().then((user) => response.json(user))
 })
 
 /**
  * Handles get request for specific userid
  */
 router.get('/:id', (request, response) => {
-    getUser(request.params.id)
+    UserService.getUser(request.params.id)
         .then((user) => {
             if (user) {
                 response.json(user)
@@ -36,14 +36,6 @@ router.get('/:id', (request, response) => {
 })
 
 /**
- * GetUser from mongodb database based on user id
- * @param {string} userid - userid string from google login
- */
-const getUser = (userid) => {
-    return User.findById({ _id: userid })
-}
-
-/**
  * Handles post request to user api route
  */
 router.post('/', (request, response) => {
@@ -52,27 +44,16 @@ router.post('/', (request, response) => {
         name: request.body.name,
         email: request.body.email
     }
-    postUser(userBody)
+    UserService.postUser(userBody)
         .then((result) => response.json(result))
         .catch((error) => response.send(error))
 })
 
 /**
- * Post new user to mongodb
- * @function
- * @param {Object} userBody - object representing user account
- * @returns {Promise} – Promise document representing the user document in mongoDB database
- */
-const postUser = (userBody) => {
-    const user = new User(userBody)
-    return user.save()
-}
-
-/**
  * Handles patch request for a specific user id
  */
 router.patch('/:id', (req, res) => {
-    User.findByIdAndUpdate({ _id: req.params.id }, req.body, { new: true })
+    UserService.patchUser(req.params.id, req.body, { new: true })
         .then((newUser) => {
             res.json(newUser)
         })
@@ -83,24 +64,11 @@ router.patch('/:id', (req, res) => {
  * Handles delete request for a specific user id
  */
 router.delete('/:id', (request, response) => {
-    deleteUser(request.params.id)
+    UserService.deleteUser(request.params.id)
         .then(() => {
             response.status(204).end()
         })
         .catch((error) => response.send(error))
 })
 
-/**
- * Delete specific user from mongoDB
- * @param {string} userid - userId string from google login
- */
-const deleteUser = (userid) => {
-    return User.deleteOne({ _id: userid })
-}
-
-module.exports = {
-    router: router,
-    getUser: getUser,
-    postUser: postUser,
-    deleteUser: deleteUser
-}
+module.exports = router
