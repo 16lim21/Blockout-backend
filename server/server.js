@@ -42,10 +42,10 @@ app.use(
 ) // Parse application/x-www-form-urlencoded from tokenid
 
 // Define application routing
-const users = require('./routers/users')
+const users = require('./api/users')
 app.use('/api/users', users.router)
 
-const blockout = require('./routers/blockout')
+const blockout = require('./api/blockout')
 app.use('/api', blockout.router)
 
 // Listen on specified port for express app
