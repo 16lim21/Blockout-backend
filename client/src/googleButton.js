@@ -59,6 +59,8 @@ const GoogleButton = ({ loggedIn, setLogin }) => {
         setLogin(false);
     };
 
+    const scope = "https://www.googleapis.com/auth/calendar";
+
     return (
         <div>
             {loggedIn ? (
@@ -75,6 +77,7 @@ const GoogleButton = ({ loggedIn, setLogin }) => {
                     onSuccess={(response) => login(response, setLogin)}
                     onFailure={responseGoogle}
                     cookiePolicy={"single_host_origin"}
+                    scope={scope}
                 />
             )}
         </div>
