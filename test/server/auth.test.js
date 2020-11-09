@@ -1,7 +1,6 @@
-// Followed tutorial from https://www.digitalocean.com/community/tutorials/test-a-node-restful-api-with-mocha-and-chai#a-better-test
 const chai = require('chai')
-const auth = require('../../server/api/routes/auth')
-const users = require('../../server/api/routes/users')
+const UserAuth = require('../../server/services/userAuth')
+const UserService = require('../../server/services/userService')
 const assert = require('assert')
 const { OAuth2Client, LoginTicket } = require('google-auth-library')
 const nock = require('nock')
@@ -10,7 +9,7 @@ const chaiHttp = require('chai-http')
 chai.should()
 chai.use(chaiHttp)
 
-describe('Testing Blockout API', () => {
+describe('Testing User Authentication API', () => {
     let client
     beforeEach(() => {
         client = new OAuth2Client(process.env.CLIENT_ID)
@@ -48,8 +47,8 @@ describe('Testing Blockout API', () => {
             assert.deepStrictEqual(certs, fakeCerts)
             return new LoginTicket('c', payload)
         }
-
-        const result = await auth.verify(client, idToken)
+        const userAuthInstance = new UserAuth(client)
+        const result = await userAuthInstance.verifyToken(idToken)
         scope.done()
 
         if (result) {
@@ -67,12 +66,12 @@ describe('Testing Blockout API', () => {
             name: 'test_user',
             email: 'test@gmail.com'
         }
-        const result = await auth.checkUser(payload)
+        const userAuthInstance = new UserAuth(client)
+        const result = await userAuthInstance.checkUser(payload)
 
         if (result) {
             assert.strictEqual(result._id, payload.sub)
-            users
-                .deleteUser(payload.sub)
+            UserService.deleteUser(payload.sub)
                 .then(() => {
                     console.log('deleted user')
                 })
