@@ -71,11 +71,23 @@ describe('Testing User Authentication API', () => {
 
         if (result) {
             assert.strictEqual(result._id, payload.sub)
-            UserService.deleteUser(payload.sub)
+            UserService.deleteUser(result._id)
                 .then(() => {
                     console.log('deleted user')
                 })
                 .catch((error) => console.log(error))
+        }
+    })
+
+    it('Should check database for an existing user then return it', async () => {
+        const payload = {
+            sub: '1'
+        }
+        const userAuthInstance = new UserAuth(client)
+        const result = await userAuthInstance.checkUser(payload)
+
+        if (result) {
+            assert.strictEqual(result._id, payload.sub)
         }
     })
 })
