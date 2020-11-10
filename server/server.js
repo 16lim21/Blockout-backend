@@ -54,4 +54,9 @@ http.listen(PORT, () => {
     console.log(`Started server on port ${PORT}`)
 })
 
+process.on('SIGINT', () => {
+    console.log('\nGracefully shutting down from SIGINT (Ctrl-C)')
+    process.exit(1)
+})
+
 module.exports = app
