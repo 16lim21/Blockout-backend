@@ -1,6 +1,7 @@
 const chai = require('chai')
 const UserAuth = require('../../server/services/userAuth')
 const UserService = require('../../server/services/userService')
+const server = require('../../server/server')
 const assert = require('assert')
 const { OAuth2Client, LoginTicket } = require('google-auth-library')
 const nock = require('nock')
@@ -9,85 +10,101 @@ const chaiHttp = require('chai-http')
 chai.should()
 chai.use(chaiHttp)
 
-describe('Testing User Authentication API', () => {
-    let client
-    beforeEach(() => {
-        client = new OAuth2Client(process.env.CLIENT_ID)
+describe('Testing User Auth Service and User Auth Route', () => {
+    describe('Testing userAuth service', () => {
+        let client
+        beforeEach(() => {
+            client = new OAuth2Client(process.env.CLIENT_ID)
+        })
+
+        afterEach(() => {
+            nock.cleanAll()
+        })
+
+        // Testing based on verifyIdToken test from google-auth-library
+        // https://github.com/googleapis/google-auth-library-nodejs/blob/master/test/test.oauth2.ts
+        it('Should verify idtoken properly (though idtoken is fake)', async () => {
+            const fakeCerts = { a: 'a', b: 'b' }
+            const idToken = 'idToken'
+            const payload = {
+                aud: 'aud',
+                sub: 'sub',
+                iss: 'iss',
+                iat: 1514162443,
+                exp: 1514166043
+            }
+
+            const scope = nock('https://www.googleapis.com')
+                .get('/oauth2/v1/certs')
+                .reply(200, fakeCerts)
+
+            client.verifySignedJwtWithCertsAsync = async (
+                jwt,
+                certs,
+                requiredAudience,
+                issuers,
+                theMaxExpiry
+            ) => {
+                assert.strictEqual(jwt, idToken)
+                assert.deepStrictEqual(certs, fakeCerts)
+                return new LoginTicket('c', payload)
+            }
+            const userAuthInstance = new UserAuth(client)
+            const result = await userAuthInstance.verifyToken(idToken)
+            scope.done()
+
+            if (result) {
+                assert.strictEqual(result, payload)
+            }
+        })
+
+        it('Should check database for user, create the new user, then delete it', async () => {
+            const payload = {
+                aud: 'aud',
+                sub: 'sub',
+                iss: 'iss',
+                iat: 1514162443,
+                exp: 1514166043,
+                name: 'test_user',
+                email: 'test@gmail.com'
+            }
+            const userAuthInstance = new UserAuth(client)
+            const result = await userAuthInstance.checkUser(payload)
+
+            if (result) {
+                assert.strictEqual(result._id, payload.sub)
+                UserService.deleteUser(result._id).catch((error) =>
+                    console.log(error)
+                )
+            }
+        })
+
+        it('Should check database for an existing user then return it', async () => {
+            const payload = {
+                sub: '1'
+            }
+            const userAuthInstance = new UserAuth(client)
+            const result = await userAuthInstance.checkUser(payload)
+
+            if (result) {
+                assert.strictEqual(result._id, payload.sub)
+            }
+        })
     })
-
-    afterEach(() => {
-        nock.cleanAll()
-    })
-
-    // Testing based on verifyIdToken test from google-auth-library
-    // https://github.com/googleapis/google-auth-library-nodejs/blob/master/test/test.oauth2.ts
-    it('Should verify idtoken properly (though idtoken is fake)', async () => {
-        const fakeCerts = { a: 'a', b: 'b' }
-        const idToken = 'idToken'
-        const payload = {
-            aud: 'aud',
-            sub: 'sub',
-            iss: 'iss',
-            iat: 1514162443,
-            exp: 1514166043
-        }
-
-        const scope = nock('https://www.googleapis.com')
-            .get('/oauth2/v1/certs')
-            .reply(200, fakeCerts)
-
-        client.verifySignedJwtWithCertsAsync = async (
-            jwt,
-            certs,
-            requiredAudience,
-            issuers,
-            theMaxExpiry
-        ) => {
-            assert.strictEqual(jwt, idToken)
-            assert.deepStrictEqual(certs, fakeCerts)
-            return new LoginTicket('c', payload)
-        }
-        const userAuthInstance = new UserAuth(client)
-        const result = await userAuthInstance.verifyToken(idToken)
-        scope.done()
-
-        if (result) {
-            assert.strictEqual(result, payload)
-        }
-    })
-
-    it('Should check database for user, create the new user, then delete it', async () => {
-        const payload = {
-            aud: 'aud',
-            sub: 'sub',
-            iss: 'iss',
-            iat: 1514162443,
-            exp: 1514166043,
-            name: 'test_user',
-            email: 'test@gmail.com'
-        }
-        const userAuthInstance = new UserAuth(client)
-        const result = await userAuthInstance.checkUser(payload)
-
-        if (result) {
-            assert.strictEqual(result._id, payload.sub)
-            UserService.deleteUser(result._id)
-                .then(() => {
-                    console.log('deleted user')
+    describe('testing /api/tokensignin', () => {
+        it('Should return error due to invalid idtoken (cannot test with real idtoken)', (done) => {
+            chai.request(server)
+                .post('/api/tokensignin')
+                .set('content-type', 'application/x-www-form-urlencoded')
+                .send({ idtoken: '12345' })
+                .end((error, response) => {
+                    if (error) {
+                        console.log(error)
+                        done()
+                    }
+                    response.should.have.status(400)
+                    done()
                 })
-                .catch((error) => console.log(error))
-        }
-    })
-
-    it('Should check database for an existing user then return it', async () => {
-        const payload = {
-            sub: '1'
-        }
-        const userAuthInstance = new UserAuth(client)
-        const result = await userAuthInstance.checkUser(payload)
-
-        if (result) {
-            assert.strictEqual(result._id, payload.sub)
-        }
+        })
     })
 })

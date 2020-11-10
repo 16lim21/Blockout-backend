@@ -24,21 +24,6 @@ describe('Testing User Database', () => {
         })
     })
 
-    describe('/GET/:id user', () => {
-        it('Should return an error for user id that does not exist', (done) => {
-            chai.request(server)
-                .get('/api/users/' + testId)
-                .end((error, response) => {
-                    if (error) {
-                        console.log(error)
-                    }
-                    response.should.have.status(404)
-                    response.body.should.have.property('error')
-                    done()
-                })
-        })
-    })
-
     describe('/POST user', () => {
         it('Should POST a user ', (done) => {
             chai.request(server)
@@ -63,6 +48,19 @@ describe('Testing User Database', () => {
     })
 
     describe('/GET/:id user', () => {
+        it('Should return an error for user id that does not exist', (done) => {
+            chai.request(server)
+                .get('/api/users/' + '-1')
+                .end((error, response) => {
+                    if (error) {
+                        console.log(error)
+                    }
+                    response.should.have.status(404)
+                    response.body.should.have.property('error')
+                    done()
+                })
+        })
+
         it('Should GET a user given the id', (done) => {
             chai.request(server)
                 .get('/api/users')

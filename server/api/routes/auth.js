@@ -14,13 +14,17 @@ const UserAuth = require('../../services/userAuth')
  * @async
  */
 router.post('/tokensignin', async (request, response) => {
-    response.set({
-        'Access-Control-Allow-Origin': 'http://localhost:3000'
-    })
+    try {
+        response.set({
+            'Access-Control-Allow-Origin': 'http://localhost:3000'
+        })
 
-    const userAuthInstance = new UserAuth()
-    const result = await userAuthInstance.signIn(request.body.idtoken)
-    response.json(result)
+        const userAuthInstance = new UserAuth()
+        const result = await userAuthInstance.signIn(request.body.idtoken)
+        response.json(result)
+    } catch (error) {
+        response.status(400).send(error)
+    }
 })
 
 module.exports = router
