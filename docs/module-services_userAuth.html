@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: server/models/user.js</title>
+    <title>JSDoc: Module: services/userAuth</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,50 +17,145 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: server/models/user.js</h1>
+    <h1 class="page-title">Module: services/userAuth</h1>
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>const mongoose = require('mongoose')
+        
+            
+        
+    
+</header>
 
-/**
- * User document schema
- * @namespace User
- * @property {String} _id - user id
- * @property {String} name - user name
- * @property {String} email - user email
- */
-const schema = mongoose.Schema(
-    {
-        /**
-         * userId
-         * @private
-         */
-        _id: {
-            type: String,
-            required: true
-        },
-        name: {
-            type: String,
-            required: true
-        },
-        email: {
-            type: String,
-            required: true
-        }
-    },
-    { _id: false }
-)
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><p>Handles user verification and authentication</p></div>
+        
 
-module.exports = mongoose.model('User', schema)
-</code></pre>
-        </article>
-    </section>
+        
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="server_services_userAuth.js.html">server/services/userAuth.js</a>, <a href="server_services_userAuth.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+        <h3 class="subsection-title">Requires</h3>
+
+        <ul>
+            <li>module:google-auth-library</li>
+        </ul>
+    
+
+    
+        <h3 class="subsection-title">Classes</h3>
+
+        <dl>
+            <dt><a href="module-services_userAuth-UserAuth.html">UserAuth</a></dt>
+            <dd></dd>
+        </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 
