@@ -74,6 +74,7 @@ const GoogleButton = ({ loggedIn, setLogin }) => {
                 <GoogleLogin
                     clientId={process.env.REACT_APP_CLIENT_ID}
                     buttonText="Login"
+                    responseType="id_token token"
                     onSuccess={(response) => login(response, setLogin)}
                     onFailure={responseGoogle}
                     cookiePolicy={"single_host_origin"}
