@@ -20,7 +20,7 @@ router.post('/tokensignin', async (request, response) => {
         })
 
         const userAuthInstance = new UserAuth()
-        const result = await userAuthInstance.signIn(request.body.idtoken)
+        const result = await userAuthInstance.signIn(request.body.id_token)
         response.json(result)
     } catch (error) {
         response.status(400).send(error)

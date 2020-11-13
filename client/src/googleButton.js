@@ -28,14 +28,14 @@ let config = {
  */
 const login = (response, setLogin) => {
     setLogin(true);
+    const id_token = response.getAuthResponse().id_token;
+    const access_token = response.getAuthResponse().access_token;
+    const data = `id_token=${id_token}&access_token=${access_token}`;
+
     axios
-        .post(
-            process.env.REACT_APP_API_URL,
-            "idtoken=" + response.getAuthResponse().id_token,
-            config
-        )
+        .post(process.env.REACT_APP_API_URL, data, config)
         .then((response) => {
-            console.log("Signed in as: " + response.data);
+            console.log("Signed in as: " + response.data.email);
         })
         .catch((error) => {
             console.log("Token not sent. Specific error: " + error.message);
