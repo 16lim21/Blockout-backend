@@ -31,6 +31,7 @@ mongoose
 // Setup express app
 const express = require('express')
 const bodyParser = require('body-parser')
+const session = require('express-session')
 const app = express()
 const http = require('http').createServer(app)
 
@@ -40,6 +41,15 @@ app.use(
         extended: true
     })
 ) // Parse application/x-www-form-urlencoded from tokenid
+
+app.use(
+    session({
+        secret: 'blockout',
+        resave: 'false',
+        saveUninitialized: 'false',
+        sameSite: 'lax'
+    })
+)
 
 // Define application routing
 const users = require('./api/routes/users')
