@@ -28,9 +28,11 @@ let config = {
  */
 const login = (response, setLogin) => {
     setLogin(true);
-    const id_token = response.getAuthResponse().id_token;
-    const access_token = response.getAuthResponse().access_token;
-    const data = `id_token=${id_token}&access_token=${access_token}`;
+    const google_response = response.getAuthResponse();
+    const id_token = google_response.id_token;
+    const access_token = google_response.access_token;
+    const expires_in = google_response.expires_in;
+    const data = `id_token=${id_token}&access_token=${access_token}&expires_in=${expires_in}`;
 
     axios
         .post(process.env.REACT_APP_API_URL, data, config)
