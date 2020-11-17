@@ -3,25 +3,15 @@
  * @exports App
  */
 
-import React, { useState } from "react";
+import React from "react";
 import Router from "./Router";
-import AuthContext from "./contexts/AuthContext";
-
-function useProvideAuth() {
-    const [loggedIn, setLogin] = useState(false);
-    return { loggedIn, setLogin };
-}
-
-function ProvideAuth({ children }) {
-    const auth = useProvideAuth();
-    return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>;
-}
+import AuthProvider from "./contexts/useAuthContext";
 
 const App = () => {
     return (
-        <ProvideAuth>
+        <AuthProvider>
             <Router />
-        </ProvideAuth>
+        </AuthProvider>
     );
 };
 
