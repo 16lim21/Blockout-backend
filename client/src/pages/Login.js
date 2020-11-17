@@ -4,7 +4,7 @@
  */
 import React from "react";
 import "./Login.css";
-import GoogleButton from "../components/googleButton";
+import GoogleButton from "../components/GoogleButton";
 
 const Login = () => {
     return (

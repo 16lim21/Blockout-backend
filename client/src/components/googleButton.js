@@ -6,7 +6,7 @@
 import React, { useContext } from "react";
 import axios from "axios";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
-import AuthContext from "../contexts/authContext";
+import AuthContext from "../contexts/AuthContext";
 import { useHistory } from "react-router-dom";
 
 const GoogleButton = () => {

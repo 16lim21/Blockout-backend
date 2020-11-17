@@ -5,7 +5,7 @@
 
 import React, { useState } from "react";
 import Router from "./Router";
-import AuthContext from "./contexts/authContext";
+import AuthContext from "./contexts/AuthContext";
 
 function useProvideAuth() {
     const [loggedIn, setLogin] = useState(false);

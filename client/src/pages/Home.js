@@ -2,7 +2,7 @@
  * Home page that users see once they have logged in
  * @exports Home
  */
-import GoogleButton from "../components/googleButton";
+import GoogleButton from "../components/GoogleButton";
 
 const Home = () => {
     return (
