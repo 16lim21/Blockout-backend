@@ -64,7 +64,7 @@
     "husky": {
         "hooks": {
             "pre-commit": "lint-staged",
-            "pre-push": "npm run docs && git commit -m 'recompiling docs' "
+            "pre-push": "npm run test && npm run docs && git commit -m 'recompiling docs' "
         }
     },
     "mocha": {
