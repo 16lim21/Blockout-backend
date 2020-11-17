@@ -5,7 +5,7 @@
 import React, { useState } from "react";
 import logo from "./logo.svg";
 import "./Login.css";
-import { GoogleButton } from "./googleButton";
+import { GoogleButton } from "../components/googleButton";
 
 const Login = () => {
     const [loggedIn, setLogin] = useState(false);

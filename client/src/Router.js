@@ -3,7 +3,7 @@
  * @exports Router
  */
 import { Switch, Route } from "react-router-dom";
-import Login from "./Login";
+import Login from "./pages/Login";
 
 const Router = () => (
     <Switch>
