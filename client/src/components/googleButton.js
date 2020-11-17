@@ -59,15 +59,11 @@ const GoogleButton = () => {
 
         axios
             .post(process.env.REACT_APP_API_URL, data, config)
-            .then((response) => {
-                setLogin(true);
+            .then(() => {
                 history.push("/home");
+                setLogin(true);
             })
             .catch((error) => {
-                // For testing purposes only (remove for production/pushing to github)
-                setLogin(true);
-                history.push("/home");
-
                 console.log("Token not sent. Specific error: " + error.message);
             });
     };
@@ -86,9 +82,7 @@ const GoogleButton = () => {
                     clientId={process.env.REACT_APP_CLIENT_ID}
                     buttonText="Login"
                     responseType="id_token token"
-                    onSuccess={(response) => {
-                        login(response);
-                    }}
+                    onSuccess={(response) => login(response)}
                     onFailure={responseGoogle}
                     cookiePolicy={"single_host_origin"}
                     scope={scope}
