@@ -1,5 +1,5 @@
 /**
- * This is the basic react frontend
+ * This is the Login page (first thing that users see if not logged in)
  * @exports Login
  */
 import React, { useState } from "react";

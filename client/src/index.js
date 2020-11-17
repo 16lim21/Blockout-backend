@@ -1,3 +1,7 @@
+/**
+ * Index.js that React renders
+ */
+
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";

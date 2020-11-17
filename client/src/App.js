@@ -1,9 +1,14 @@
+/**
+ * The Single Page Application that incorporates all the routers and the soon to be added navbar
+ * @exports App
+ */
+
 import React from "react";
-import Main from "./Main";
+import Router from "./Router";
 
 const App = () => {
     <div>
-        <Main />
+        <Router />
     </div>;
 };
 
