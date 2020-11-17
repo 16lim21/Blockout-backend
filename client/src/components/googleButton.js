@@ -3,48 +3,17 @@
  * @exports GoogleButton
  * @exports login - This export is temporary, done to allow easier testing
  */
-import React from "react";
+import React, { useContext } from "react";
 import axios from "axios";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
+import AuthContext from "../contexts/authContext";
+import { useHistory } from "react-router-dom";
 
-/**
- * Config json to be sent with token post request
- * @type {object}
- * @property headers - request headers
- */
-let config = {
-    /**
-     * Request headers to be sent
-     * @property "Content-Type" - The content type of the request
-     */
-    headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-    },
-};
+const GoogleButton = () => {
+    const scope = "https://www.googleapis.com/auth/calendar";
+    const { loggedIn, setLogin } = useContext(AuthContext);
+    let history = useHistory();
 
-/**
- * Login function that signs user in and sends client token to backend
- * @param {Object} response - The response object received from google login
- */
-const login = (response, setLogin) => {
-    setLogin(true);
-    const google_response = response.getAuthResponse();
-    const id_token = google_response.id_token;
-    const access_token = google_response.access_token;
-    const expires_in = google_response.expires_in;
-    const data = `id_token=${id_token}&access_token=${access_token}&expires_in=${expires_in}`;
-
-    axios
-        .post(process.env.REACT_APP_API_URL, data, config)
-        .then((response) => {
-            console.log("Signed in as: " + response.data.email);
-        })
-        .catch((error) => {
-            console.log("Token not sent. Specific error: " + error.message);
-        });
-};
-
-const GoogleButton = ({ loggedIn, setLogin }) => {
     /**
      * Debugging function to log response
      * @param {Object} response - the response object received from google login
@@ -59,9 +28,47 @@ const GoogleButton = ({ loggedIn, setLogin }) => {
      */
     const logout = (response) => {
         setLogin(false);
+        history.push("/");
     };
 
-    const scope = "https://www.googleapis.com/auth/calendar";
+    /**
+     * Config json to be sent with token post request
+     * @type {object}
+     * @property headers - request headers
+     */
+    const config = {
+        /**
+         * Request headers to be sent
+         * @property "Content-Type" - The content type of the request
+         */
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+    };
+
+    /**
+     * Login function that signs user in and sends client token to backend
+     * @param {Object} response - The response object received from google login
+     */
+    const login = (response) => {
+        const google_response = response.getAuthResponse();
+        const id_token = google_response.id_token;
+        const access_token = google_response.access_token;
+        const expires_in = google_response.expires_in;
+        const data = `id_token=${id_token}&access_token=${access_token}&expires_in=${expires_in}`;
+
+        axios
+            .post(process.env.REACT_APP_API_URL, data, config)
+            .then((response) => {
+                setLogin(true);
+                history.push("/home");
+            })
+            .catch((error) => {
+                setLogin(true);
+                history.push("/home");
+                console.log("Token not sent. Specific error: " + error.message);
+            });
+    };
 
     return (
         <div>
@@ -77,7 +84,9 @@ const GoogleButton = ({ loggedIn, setLogin }) => {
                     clientId={process.env.REACT_APP_CLIENT_ID}
                     buttonText="Login"
                     responseType="id_token token"
-                    onSuccess={(response) => login(response, setLogin)}
+                    onSuccess={(response) => {
+                        login(response);
+                    }}
                     onFailure={responseGoogle}
                     cookiePolicy={"single_host_origin"}
                     scope={scope}
@@ -87,4 +96,4 @@ const GoogleButton = ({ loggedIn, setLogin }) => {
     );
 };
 
-export { GoogleButton, login };
+export default GoogleButton;

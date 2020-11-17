@@ -2,25 +2,16 @@
  * This is the Login page (first thing that users see if not logged in)
  * @exports Login
  */
-import React, { useState } from "react";
-import logo from "./logo.svg";
+import React from "react";
 import "./Login.css";
-import { GoogleButton } from "../components/googleButton";
+import GoogleButton from "../components/googleButton";
 
 const Login = () => {
-    const [loggedIn, setLogin] = useState(false);
-
     return (
         <div className="App">
             <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                    Edit <code>src/App.js</code> and save to reload.
-                </p>
-                <GoogleButton
-                    loggedIn={loggedIn}
-                    setLogin={setLogin}
-                ></GoogleButton>
+                <p>Click button to login!</p>
+                <GoogleButton />
             </header>
         </div>
     );
