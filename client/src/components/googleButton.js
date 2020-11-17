@@ -64,8 +64,10 @@ const GoogleButton = () => {
                 history.push("/home");
             })
             .catch((error) => {
+                // For testing purposes only (remove for production/pushing to github)
                 setLogin(true);
                 history.push("/home");
+
                 console.log("Token not sent. Specific error: " + error.message);
             });
     };
