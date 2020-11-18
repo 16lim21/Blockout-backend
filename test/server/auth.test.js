@@ -1,6 +1,6 @@
 const chai = require('chai')
-const UserAuth = require('../../server/services/userAuth')
-const UserService = require('../../server/services/userService')
+const AuthService = require('../../server/services/AuthService')
+const UserService = require('../../server/services/UserService')
 const server = require('../../server/server')
 const assert = require('assert')
 const { OAuth2Client, LoginTicket } = require('google-auth-library')
@@ -11,7 +11,7 @@ chai.should()
 chai.use(chaiHttp)
 
 describe('Testing User Auth Service and User Auth Route', () => {
-    describe('Testing userAuth service', () => {
+    describe('Testing Auth Service', () => {
         let client
         beforeEach(() => {
             client = new OAuth2Client(process.env.CLIENT_ID)
@@ -49,8 +49,8 @@ describe('Testing User Auth Service and User Auth Route', () => {
                 assert.deepStrictEqual(certs, fakeCerts)
                 return new LoginTicket('c', payload)
             }
-            const userAuthInstance = new UserAuth(client)
-            const result = await userAuthInstance.verifyToken(idToken)
+            const authServiceInstance = new AuthService(client)
+            const result = await authServiceInstance.verifyToken(idToken)
             scope.done()
 
             if (result) {
@@ -68,8 +68,8 @@ describe('Testing User Auth Service and User Auth Route', () => {
                 name: 'test_user',
                 email: 'test@gmail.com'
             }
-            const userAuthInstance = new UserAuth(client)
-            const result = await userAuthInstance.checkUser(payload)
+            const authServiceInstance = new AuthService(client)
+            const result = await authServiceInstance.checkUser(payload)
 
             if (result) {
                 assert.strictEqual(result._id, payload.sub)
@@ -83,8 +83,8 @@ describe('Testing User Auth Service and User Auth Route', () => {
             const payload = {
                 sub: '1'
             }
-            const userAuthInstance = new UserAuth(client)
-            const result = await userAuthInstance.checkUser(payload)
+            const authServiceInstance = new AuthService(client)
+            const result = await authServiceInstance.checkUser(payload)
 
             if (result) {
                 assert.strictEqual(result._id, payload.sub)
