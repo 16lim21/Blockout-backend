@@ -60,13 +60,13 @@ app.use(
 )
 
 // Define application routing
-const users = require('./api/routes/users')
+const users = require('./api/controllers/users')
 app.use('/api/users', users)
 
-const auth = require('./api/routes/auth')
+const auth = require('./api/controllers/auth')
 app.use('/api', auth)
 
-const blockout = require('./api/routes/blockout')
+const blockout = require('./api/controllers/blockout')
 app.use('/api/blockout', blockout)
 
 // Listen on specified port for express app
