@@ -16,9 +16,9 @@ router.get('/events', async (request, response) => {
         const events = calendarServiceInstance.getEvents()
 
         // Send back response
-        response.set({
-            'Access-Control-Allow-Origin': 'http://localhost:3000'
-        })
+        // response.set({
+        //     'Access-Control-Allow-Origin': 'http://localhost:3000'
+        // })
         response.json(events)
     } catch (error) {
         response.status(400).send(error)

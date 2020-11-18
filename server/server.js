@@ -32,8 +32,16 @@ mongoose
 const express = require('express')
 const bodyParser = require('body-parser')
 const session = require('express-session')
+const cors = require('cors')
 const app = express()
+
 const http = require('http').createServer(app)
+
+app.use(
+    cors({
+        origin: 'http://localhost:3000'
+    })
+)
 
 app.use(bodyParser.json()) // Parse application/json
 app.use(
