@@ -44,18 +44,8 @@ class CalendarService {
             }
         }
 
-        const result = await calendar.events.list(
-            options,
-            (error, response) => {
-                if (error) {
-                    return console.log('Encountered error:' + error)
-                }
-
-                const events = response.data.items
-                console.log(events)
-            }
-        )
-        console.log(result)
+        const result = await calendar.events.list(options)
+        return result.data.items
     }
 }
 

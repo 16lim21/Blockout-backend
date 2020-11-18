@@ -12,7 +12,7 @@ router.get('/events', async (request, response) => {
     try {
         const accessToken = request.session.access_token
         const calendarServiceInstance = new CalendarService(accessToken)
-        const events = calendarServiceInstance.getEvents()
+        const events = await calendarServiceInstance.getEvents()
 
         response.json(events)
     } catch (error) {

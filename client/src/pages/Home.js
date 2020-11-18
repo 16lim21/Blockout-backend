@@ -15,32 +15,25 @@ const Home = () => {
                 withCredentials: true,
             })
             .then((response) => {
-                console.log(response);
-                return response;
+                console.log(response.data);
+                setEvents(response.data);
             })
-            .then((data) => setEvents([data]))
             .catch((error) => {
                 console.log("Some error found" + error.message);
             });
-    };
-
-    const Events = () => {
-        return (
-            <h2>
-                {events.map((event) => (
-                    <div>
-                        {event.id} + {event.description}
-                    </div>
-                ))}
-            </h2>
-        );
     };
 
     return (
         <div>
             <h1>Home Page</h1>
             <button onClick={getData}>Click Me</button>
-            <Events></Events>
+            <div>
+                {events.map((event) => (
+                    <div key={event.id}>
+                        {event.summary} created by {event.creator.email}
+                    </div>
+                ))}
+            </div>
             <GoogleButton />
         </div>
     );
