@@ -50,6 +50,7 @@ app.use(
     })
 ) // Parse application/x-www-form-urlencoded from tokenid
 
+// Define express session
 app.use(
     session({
         secret: 'blockout',
@@ -60,14 +61,8 @@ app.use(
 )
 
 // Define application routing
-const users = require('./api/controllers/users')
-app.use('/api/users', users)
-
-const auth = require('./api/controllers/auth')
-app.use('/api', auth)
-
-const blockout = require('./api/controllers/blockout')
-app.use('/api/blockout', blockout)
+const index = require('./api/controllers/index')
+app.use('/api', index)
 
 // Listen on specified port for express app
 const PORT = process.env.PORT || 3001

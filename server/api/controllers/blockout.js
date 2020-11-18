@@ -11,7 +11,7 @@ const CalendarService = require('../../services/CalendarService')
 router.get('/events', async (request, response) => {
     try {
         const accessToken = request.session.access_token
-        console.log(request.session)
+        console.log(request.session.id)
         const calendarServiceInstance = new CalendarService(accessToken)
         const events = calendarServiceInstance.getEvents()
 
