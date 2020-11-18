@@ -2,7 +2,7 @@
  * Home page that users see once they have logged in
  * @exports Home
  */
-import { useState } from "react";
+import React, { useState } from "react";
 import GoogleButton from "../components/GoogleButton";
 import axios from "axios";
 
