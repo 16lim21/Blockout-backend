@@ -20,16 +20,19 @@ class CalendarService {
         googleClient = new OAuth2Client(process.env.CLIENT_ID)
     ) {
         this.googleClient = googleClient
-        this.googleClient.setCredentials(accessToken)
+        this.googleClient.setCredentials({ access_token: accessToken })
     }
 
     /**
      * Gets a certain set of events from calendar api
      * @param {object} options - JSON object representing options to be passed to calendar api
      */
-    getEvents (options) {
-        const googleClient = this.googleClient
-        const calendar = google.calendar({ version: 'v3', googleClient })
+    async getEvents (options) {
+        const calendar = google.calendar({
+            version: 'v3',
+            auth: this.googleClient
+        })
+
         // if options were not supplied/were undefined
         if (!options) {
             options = {
@@ -41,14 +44,18 @@ class CalendarService {
             }
         }
 
-        calendar.events.list(options, (error, response) => {
-            if (error) {
-                return console.log('Encountered error:' + error)
-            }
+        const result = await calendar.events.list(
+            options,
+            (error, response) => {
+                if (error) {
+                    return console.log('Encountered error:' + error)
+                }
 
-            const events = response.data.items
-            return events
-        })
+                const events = response.data.items
+                console.log(events)
+            }
+        )
+        console.log(result)
     }
 }
 

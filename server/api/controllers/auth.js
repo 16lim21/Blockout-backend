@@ -22,10 +22,6 @@ router.post('/tokensignin', async (request, response) => {
         // Add session variables if user is authenticated
         request.session.cookie.maxAge = request.body.expires_in * 1000
         request.session.access_token = request.body.access_token
-        console.log(request.session.id)
-        // request.session.save((error) => {
-        //     if (error) console.log(error)
-        // })
 
         // Send back response
         response.json(result)

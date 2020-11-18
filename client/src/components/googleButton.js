@@ -44,6 +44,7 @@ const GoogleButton = () => {
         headers: {
             "Content-Type": "application/x-www-form-urlencoded",
         },
+        withCredentials: true,
     };
 
     /**

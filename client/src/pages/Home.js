@@ -11,7 +11,9 @@ const Home = () => {
 
     const getData = () => {
         axios
-            .get(process.env.REACT_APP_API_URL + "blockout/events")
+            .get(process.env.REACT_APP_API_URL + "blockout/events", {
+                withCredentials: true,
+            })
             .then((response) => {
                 console.log(response);
                 return response;
