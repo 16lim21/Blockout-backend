@@ -10,15 +10,11 @@ const CalendarService = require('../../services/CalendarService')
 
 router.get('/events', async (request, response) => {
     try {
-        // Authenticate User
         const accessToken = request.session.access_token
+        console.log(request.session)
         const calendarServiceInstance = new CalendarService(accessToken)
         const events = calendarServiceInstance.getEvents()
 
-        // Send back response
-        // response.set({
-        //     'Access-Control-Allow-Origin': 'http://localhost:3000'
-        // })
         response.json(events)
     } catch (error) {
         response.status(400).send(error)

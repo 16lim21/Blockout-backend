@@ -58,7 +58,7 @@ const GoogleButton = () => {
         const data = `id_token=${id_token}&access_token=${access_token}&expires_in=${expires_in}`;
 
         axios
-            .post(process.env.REACT_APP_API_URL, data, config)
+            .post(process.env.REACT_APP_API_URL + "tokensignin", data, config)
             .then(() => {
                 history.push("/home");
                 setLogin(true);
