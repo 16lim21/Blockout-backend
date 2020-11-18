@@ -58,6 +58,9 @@ app.use('/api/users', users)
 const auth = require('./api/routes/auth')
 app.use('/api', auth)
 
+const blockout = require('./api/routes/blockout')
+app.use('/api/blockout', blockout)
+
 // Listen on specified port for express app
 const PORT = process.env.PORT || 3001
 http.listen(PORT, () => {

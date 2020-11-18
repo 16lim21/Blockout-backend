@@ -1,15 +1,15 @@
 /**
  * Handles user verification and authentication
- * @module services/userAuth
+ * @module services/AuthService
  * @requires google-auth-library
- * @exports UserAuth - A UserAuthentication Class
+ * @exports AuthService - An Authentication Service Class
  */
 const { OAuth2Client } = require('google-auth-library')
-const UserService = require('./userService')
+const UserService = require('./UserService')
 
-class UserAuth {
+class AuthService {
     /**
-     * Constructor for userAuth class
+     * Constructor for AuthService class
      * @constructor
      * @param {OAuth2Client} googleClient - Google OAuth2Client object
      */
@@ -74,4 +74,4 @@ class UserAuth {
     }
 }
 
-module.exports = UserAuth
+module.exports = AuthService

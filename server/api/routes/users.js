@@ -8,7 +8,7 @@
  */
 const express = require('express')
 const router = express.Router()
-const UserService = require('../../services/userService')
+const UserService = require('../../services/UserService')
 
 /**
  * Handles get request for all users

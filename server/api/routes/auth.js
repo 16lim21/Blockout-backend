@@ -2,11 +2,11 @@
  * Module to authenticate user sign in
  * @module api/routes/auth
  * @requires express
- * @exports router - express router to handle api calls to /api
+ * @exports router - express router to handle api calls to /api/tokensignin
  */
 const express = require('express')
 const router = express.Router()
-const UserAuth = require('../../services/userAuth')
+const AuthService = require('../../services/AuthService')
 
 /**
  * Router method to handle post requests to /api/tokensignin
@@ -16,8 +16,8 @@ const UserAuth = require('../../services/userAuth')
 router.post('/tokensignin', async (request, response) => {
     try {
         // Authenticate User
-        const userAuthInstance = new UserAuth()
-        const result = await userAuthInstance.signIn(request.body.id_token)
+        const authServiceInstance = new AuthService()
+        const result = await authServiceInstance.signIn(request.body.id_token)
 
         // Add session variables if user is authenticated
         request.session.cookie.maxAge = request.body.expires_in * 1000
