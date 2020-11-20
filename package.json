@@ -7,7 +7,6 @@
         "start": "node ./server/server.js",
         "test": "npx nyc mocha './test/**/*.js' --exit",
         "dev": "nodemon ./server/server.js",
-        "client": "cd client && npm start",
         "postinstall": "cd client && npm install",
         "docs": "node_modules/.bin/jsdoc -c jsdoc.json README.md && git add docs"
     },
