@@ -39,5 +39,7 @@ jobs:
     - name: Recompile and push docs
       run: |
         npm run docs 
+        git config --global user.name "github action"
+        git config --global user.email "53011962+16lim21@users.noreply.github.com"
         git commit -m 'recompiling docs'
         git push
