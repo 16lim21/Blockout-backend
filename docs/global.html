@@ -94,129 +94,6 @@
     
 
     
-        <h3 class="subsection-title">Members</h3>
-
-        
-            
-<h4 class="name" id="config"><span class="type-signature"></span>config<span class="type-signature"> :object</span></h4>
-
-
-
-
-<div class="description">
-    <p>Config json to be sent with token post request</p>
-</div>
-
-
-
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type">object</span>
-
-
-        </li>
-    </ul>
-
-
-
-
-
-    <h5 class="subsection-title">Properties:</h5>
-
-    
-
-<table class="props">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>headers</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>request headers</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client_src_googleButton.js.html">client/src/googleButton.js</a>, <a href="client_src_googleButton.js.html#line15">line 15</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-    
 
     
         <h3 class="subsection-title">Methods</h3>
@@ -227,7 +104,7 @@
     
 
     
-    <h4 class="name" id="login"><span class="type-signature"></span>login<span class="signature">(response)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="deleteUser"><span class="type-signature"></span>deleteUser<span class="signature">(userid)</span><span class="type-signature"></span></h4>
     
 
     
@@ -235,7 +112,7 @@
 
 
 <div class="description">
-    <p>Login function that signs user in and sends client token to backend</p>
+    <p>Delete specific user from mongoDB</p>
 </div>
 
 
@@ -271,13 +148,13 @@
 
         <tr>
             
-                <td class="name"><code>response</code></td>
+                <td class="name"><code>userid</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">string</span>
 
 
             
@@ -287,7 +164,7 @@
 
             
 
-            <td class="description last"><p>The response object received from google login</p></td>
+            <td class="description last"><p>userId string from google login</p></td>
         </tr>
 
     
@@ -328,7 +205,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client_src_googleButton.js.html">client/src/googleButton.js</a>, <a href="client_src_googleButton.js.html#line29">line 29</a>
+        <a href="services_userService.js.html">services/userService.js</a>, <a href="services_userService.js.html#line37">line 37</a>
     </li></ul></dd>
     
 
@@ -359,6 +236,390 @@
 
 
         
+            
+
+    
+
+    
+    <h4 class="name" id="findAllUsers"><span class="type-signature"></span>findAllUsers<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Gets all users from mongodb database</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="services_userService.js.html">services/userService.js</a>, <a href="services_userService.js.html#line6">line 6</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="getUser"><span class="type-signature"></span>getUser<span class="signature">(userid)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Get user from mongodb database based on user id</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>userid</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>userid string from google login</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="services_userService.js.html">services/userService.js</a>, <a href="services_userService.js.html#line14">line 14</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="postUser"><span class="type-signature"></span>postUser<span class="signature">(userBody)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Post new user to mongodb</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>userBody</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>object representing user account</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="services_userService.js.html">services/userService.js</a>, <a href="services_userService.js.html#line24">line 24</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>– Promise document representing the user document in mongoDB database</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
     
 
     
@@ -374,13 +635,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-api_routes_auth.html">api/routes/auth</a></li><li><a href="module-api_routes_users.html">api/routes/users</a></li><li><a href="module-server.html">server</a></li><li><a href="module-services_userAuth.html">services/userAuth</a></li></ul><h3>Namespaces</h3><ul><li><a href="User.html">User</a></li></ul><h3>Classes</h3><ul><li><a href="module-services_userAuth-UserAuth.html">UserAuth</a></li></ul><h3>Global</h3><ul><li><a href="global.html#config">config</a></li><li><a href="global.html#login">login</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-api_routes_auth.html">api/routes/auth</a></li><li><a href="module-api_routes_blockout.html">api/routes/blockout</a></li><li><a href="module-api_routes_users.html">api/routes/users</a></li><li><a href="module-server.html">server</a></li><li><a href="module-services_AuthService.html">services/AuthService</a></li><li><a href="module-services_CalendarService.html">services/CalendarService</a></li></ul><h3>Namespaces</h3><ul><li><a href="User.html">User</a></li></ul><h3>Classes</h3><ul><li><a href="module-services_AuthService-AuthService.html">AuthService</a></li><li><a href="module-services_CalendarService-CalendarService.html">CalendarService</a></li></ul><h3>Global</h3><ul><li><a href="global.html#deleteUser">deleteUser</a></li><li><a href="global.html#findAllUsers">findAllUsers</a></li><li><a href="global.html#getUser">getUser</a></li><li><a href="global.html#postUser">postUser</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Mon Nov 16 2020 17:00:15 GMT-0500 (Eastern Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Fri Nov 20 2020 00:12:43 GMT-0500 (Eastern Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>
