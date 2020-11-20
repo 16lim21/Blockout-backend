@@ -1,7 +1,7 @@
 {
     "title": "Blockout Docs",
     "source": {
-        "include": ["./server", "./client/src"],
+        "include": ["./server"],
         "includePattern": ".+\\.js(x)?$",
         "excludePattern": "(node_modules/|docs)"
     },
