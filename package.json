@@ -35,22 +35,15 @@
         "eslint-plugin-import": "^2.22.1",
         "eslint-plugin-node": "^11.1.0",
         "eslint-plugin-promise": "^4.2.1",
-        "eslint-plugin-react": "^7.21.4",
         "eslint-plugin-standard": "^4.0.1",
         "husky": "^4.3.0",
         "jsdoc": "^3.6.6",
-        "jsdom": "^16.4.0",
-        "jsdom-global": "^3.0.2",
         "lint-staged": "^10.4.0",
         "mocha": "^8.1.3",
         "nock": "^13.0.4",
         "nodemon": "^2.0.4",
         "nyc": "^15.1.0",
-        "pre-commit": "^1.2.2",
-        "prettier": "^2.1.2",
-        "react": "^16.14.0",
-        "react-dom": "^16.14.0",
-        "require-hacker": "^3.0.1"
+        "prettier": "^2.1.2"
     },
     "dependencies": {
         "body-parser": "^1.19.0",
@@ -59,20 +52,14 @@
         "express-session": "^1.17.1",
         "google-auth-library": "^6.1.3",
         "googleapis": "^61.0.0",
-        "mongoose": "^5.10.9"
+        "mongoose": "^5.10.9",
+        "pre-commit": "^1.2.2"
     },
     "husky": {
         "hooks": {
             "pre-commit": "lint-staged",
             "pre-push": "npm run test && npm run docs && git commit -m 'recompiling docs' "
         }
-    },
-    "mocha": {
-        "require": [
-            "@babel/register",
-            "./test/ignore-utils.js",
-            "jsdom-global/register"
-        ]
     },
     "lint-staged": {
         "*.js": "eslint --cache --fix",
