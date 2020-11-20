@@ -37,3 +37,8 @@ jobs:
         npx nyc report --reporter=text-lcov > coverage.lcov
     - name: Upload to codecov
       run: npx codecov
+    - name: Recompile and push docs
+      run: 
+        npm run docs 
+        git commit -m 'recompiling docs'
+        git push
