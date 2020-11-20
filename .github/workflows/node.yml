@@ -37,7 +37,7 @@ jobs:
     - name: Upload to codecov
       run: npx codecov
     - name: Recompile and push docs
-      run: 
+      run: |
         npm run docs 
         git commit -m 'recompiling docs'
         git push
