@@ -1,4 +1,4 @@
-name: NodeJS CI
+name: NodeJS CI/CD
 
 on:
   push:
@@ -8,7 +8,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -37,3 +36,25 @@ jobs:
         npx nyc report --reporter=text-lcov > coverage.lcov
     - name: Upload to codecov
       run: npx codecov
+  
+  deploy-docs:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Use Node.js 14
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14
+    - name: Install Dependencies
+      run: |
+        npm ci
+    - name: Build docs
+      run: npm run docs
+    - name: Recompile and deploy docs to github pages
+      uses: JamesIves/github-pages-deploy-action@3.7.1
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
+        BRANCH: gh-pages
+        FOLDER: docs
+        CLEAN: true

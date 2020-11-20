@@ -7,7 +7,7 @@
         "start": "node ./server/server.js",
         "test": "npx nyc mocha './test/**/*.js' --exit",
         "dev": "nodemon ./server/server.js",
-        "docs": "node_modules/.bin/jsdoc -c jsdoc.json README.md && git add docs"
+        "docs": "node_modules/.bin/jsdoc -c jsdoc.json README.md"
     },
     "repository": {
         "type": "git",
