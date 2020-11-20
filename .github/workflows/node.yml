@@ -37,13 +37,3 @@ jobs:
         npx nyc report --reporter=text-lcov > coverage.lcov
     - name: Upload to codecov
       run: npx codecov
-    - name: Recompile and push docs
-      run: |
-        echo $GITHUB_REF
-        echo $GITHUB_HEAD_REF
-        echo $GITHUB_BASE_REF
-        npm run docs 
-        git config --global user.name "github action"
-        git config --global user.email "53011962+16lim21@users.noreply.github.com"
-        git commit -m "recompiling docs"
-        git push origin HEAD:js
