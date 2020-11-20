@@ -1,7 +1,7 @@
 {
     "name": "Blockout",
     "version": "0.1.1",
-    "description": "Blockout api",
+    "description": "Blockout backend api",
     "main": "index.js",
     "scripts": {
         "start": "node ./server/server.js",
@@ -12,14 +12,14 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/16lim21/Blockout.git"
+        "url": "git+https://github.com/16lim21/Blockout-backend.git"
     },
     "author": "",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/16lim21/Blockout/issues"
+        "url": "https://github.com/16lim21/Blockout-backend/issues"
     },
-    "homepage": "https://github.com/16lim21/Blockout#readme",
+    "homepage": "https://github.com/16lim21/Blockout-backend#readme",
     "devDependencies": {
         "@babel/core": "^7.12.3",
         "@babel/plugin-transform-runtime": "^7.12.1",
