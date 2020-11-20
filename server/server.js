@@ -31,8 +31,21 @@ mongoose
 // Setup express app
 const express = require('express')
 const bodyParser = require('body-parser')
+const session = require('express-session')
+const cors = require('cors')
 const app = express()
+
 const http = require('http').createServer(app)
+
+app.use(
+    cors({
+        origin: [
+            'http://localhost:3000',
+            'https://blockout-backend.herokuapp.com/'
+        ],
+        credentials: true
+    })
+)
 
 app.use(bodyParser.json()) // Parse application/json
 app.use(
@@ -41,17 +54,29 @@ app.use(
     })
 ) // Parse application/x-www-form-urlencoded from tokenid
 
-// Define application routing
-const users = require('./routers/users')
-app.use('/api/users', users.router)
+// Define express session
+app.use(
+    session({
+        secret: 'blockout',
+        resave: 'false',
+        saveUninitialized: 'false',
+        sameSite: 'lax'
+    })
+)
 
-const blockout = require('./routers/blockout')
-app.use('/api', blockout.router)
+// Define application routing
+const index = require('./api/controllers/index')
+app.use('/api', index)
 
 // Listen on specified port for express app
 const PORT = process.env.PORT || 3001
 http.listen(PORT, () => {
     console.log(`Started server on port ${PORT}`)
+})
+
+process.on('SIGINT', () => {
+    console.log('\nGracefully shutting down from SIGINT (Ctrl-C)')
+    process.exit(1)
 })
 
 module.exports = app

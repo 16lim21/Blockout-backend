@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Module: server</title>
+    <title>JSDoc: Source: services/userService.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,139 +17,65 @@
 
 <div id="main">
 
-    <h1 class="page-title">Module: server</h1>
+    <h1 class="page-title">Source: services/userService.js</h1>
 
     
 
 
 
-
-<section>
-
-<header>
     
-        
-            
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><p>Creates backend express server</p></div>
-        
-
-        
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-author">Author:</dt>
-    <dd class="tag-author">
-        <ul>
-            <li>Michael Li</li>
-        </ul>
-    </dd>
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="server.js.html">server.js</a>, <a href="server.js.html#line1">line 1</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const User = require('../models/user')
+
+/**
+ * Gets all users from mongodb database
+ */
+function findAllUsers () {
+    return User.find({})
+}
+
+/**
+ * Get user from mongodb database based on user id
+ * @param {string} userid - userid string from google login
+ */
+function getUser (userid) {
+    return User.findById({ _id: userid })
+}
+
+/**
+ * Post new user to mongodb
+ * @function
+ * @param {Object} userBody - object representing user account
+ * @returns {Promise} – Promise document representing the user document in mongoDB database
+ */
+function postUser (userBody) {
+    const user = new User(userBody)
+    return user.save()
+}
+
+function patchUser (userid, body, flags) {
+    return User.findByIdAndUpdate({ _id: userid }, body, flags)
+}
+
+/**
+ * Delete specific user from mongoDB
+ * @param {string} userid - userId string from google login
+ */
+function deleteUser (userid) {
+    return User.deleteOne({ _id: userid })
+}
+
+module.exports = {
+    findAllUsers,
+    getUser,
+    postUser,
+    patchUser,
+    deleteUser
+}
+</code></pre>
+        </article>
+    </section>
 
 
 

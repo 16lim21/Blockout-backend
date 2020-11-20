@@ -15,7 +15,8 @@ jobs:
         node-version: [10.x, 12.x, 14.x]
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
@@ -23,7 +24,6 @@ jobs:
     - name: Install Dependencies
       run: |
         npm ci
-        npm run postinstall
     - name: Lint code with eslint
       run: npx eslint --debug
     - name: Run Tests
@@ -32,8 +32,8 @@ jobs:
         MONGODB_URI: ${{secrets.MONGODB_URI}}
         PORT: ${{secrets.PORT}}
       run: |
-        npm link ./client/node_modules/react
-        npx nyc mocha --recursive --exit
+        ls -al
+        npm run test
         npx nyc report --reporter=text-lcov > coverage.lcov
     - name: Upload to codecov
       run: npx codecov

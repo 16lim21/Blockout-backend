@@ -18,9 +18,6 @@
 # production
 **/build
 
-# Client Frontend
-client/README.md
-
 # misc
 **/.DS_Store
 **/.env.local

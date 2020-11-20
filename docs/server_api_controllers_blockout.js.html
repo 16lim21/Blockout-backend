@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: server/models/user.js</title>
+    <title>JSDoc: Source: server/api/controllers/blockout.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: server/models/user.js</h1>
+    <h1 class="page-title">Source: server/api/controllers/blockout.js</h1>
 
     
 
@@ -26,38 +26,29 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const mongoose = require('mongoose')
-
-/**
- * User document schema
- * @namespace User
- * @property {String} _id - user id
- * @property {String} name - user name
- * @property {String} email - user email
+            <pre class="prettyprint source linenums"><code>/**
+ * Module to interact with user google calendar
+ * @module api/routes/blockout
+ * @requires express
+ * @exports router - express router to handle api calls to /api/router
  */
-const schema = mongoose.Schema(
-    {
-        /**
-         * userId
-         * @private
-         */
-        _id: {
-            type: String,
-            required: true
-        },
-        name: {
-            type: String,
-            required: true
-        },
-        email: {
-            type: String,
-            required: true
-        }
-    },
-    { _id: false }
-)
+const express = require('express')
+const router = express.Router()
+const CalendarService = require('../../services/CalendarService')
 
-module.exports = mongoose.model('User', schema)
+router.get('/events', async (request, response) => {
+    try {
+        const accessToken = request.session.access_token
+        const calendarServiceInstance = new CalendarService(accessToken)
+        const events = await calendarServiceInstance.getEvents()
+
+        response.json(events)
+    } catch (error) {
+        response.status(400).send(error)
+    }
+})
+
+module.exports = router
 </code></pre>
         </article>
     </section>

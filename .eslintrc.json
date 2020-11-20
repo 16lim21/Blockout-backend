@@ -5,21 +5,12 @@
         "node": true,
         "mocha": true
     },
-    "extends": ["plugin:react/recommended", "standard"],
+    "extends": ["standard"],
     "ignorePatterns": "docs/**/*.js",
     "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
         "ecmaVersion": 12
     },
-    "plugins": ["react"],
     "rules": {
         "indent": ["error", 4]
-    },
-    "settings": {
-        "react": {
-            "version": "latest"
-        }
     }
 }

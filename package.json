@@ -1,26 +1,24 @@
 {
     "name": "Blockout",
-    "version": "1.0.0",
-    "description": "Blockout api",
+    "version": "0.1.1",
+    "description": "Blockout backend api",
     "main": "index.js",
     "scripts": {
         "start": "node ./server/server.js",
         "test": "npx nyc mocha './test/**/*.js' --exit",
         "dev": "nodemon ./server/server.js",
-        "client": "cd client && npm start",
-        "postinstall": "cd client && npm install",
-        "docs": "node_modules/.bin/jsdoc -c jsdoc.json README.md"
+        "docs": "node_modules/.bin/jsdoc -c jsdoc.json README.md && git add docs"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/16lim21/Blockout.git"
+        "url": "git+https://github.com/16lim21/Blockout-backend.git"
     },
     "author": "",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/16lim21/Blockout/issues"
+        "url": "https://github.com/16lim21/Blockout-backend/issues"
     },
-    "homepage": "https://github.com/16lim21/Blockout#readme",
+    "homepage": "https://github.com/16lim21/Blockout-backend#readme",
     "devDependencies": {
         "@babel/core": "^7.12.3",
         "@babel/plugin-transform-runtime": "^7.12.1",
@@ -36,41 +34,30 @@
         "eslint-plugin-import": "^2.22.1",
         "eslint-plugin-node": "^11.1.0",
         "eslint-plugin-promise": "^4.2.1",
-        "eslint-plugin-react": "^7.21.4",
         "eslint-plugin-standard": "^4.0.1",
         "husky": "^4.3.0",
         "jsdoc": "^3.6.6",
-        "jsdom": "^16.4.0",
-        "jsdom-global": "^3.0.2",
         "lint-staged": "^10.4.0",
         "mocha": "^8.1.3",
         "nock": "^13.0.4",
         "nodemon": "^2.0.4",
         "nyc": "^15.1.0",
-        "pre-commit": "^1.2.2",
-        "prettier": "^2.1.2",
-        "react": "^16.14.0",
-        "react-dom": "^16.14.0",
-        "require-hacker": "^3.0.1"
+        "prettier": "^2.1.2"
     },
     "dependencies": {
         "body-parser": "^1.19.0",
+        "cors": "^2.8.5",
         "express": "^4.17.1",
+        "express-session": "^1.17.1",
         "google-auth-library": "^6.1.3",
         "googleapis": "^61.0.0",
         "mongoose": "^5.10.9"
     },
     "husky": {
         "hooks": {
-            "pre-commit": "lint-staged"
+            "pre-commit": "lint-staged",
+            "pre-push": "npm run test"
         }
-    },
-    "mocha": {
-        "require": [
-            "@babel/register",
-            "./test/ignore-utils.js",
-            "jsdom-global/register"
-        ]
     },
     "lint-staged": {
         "*.js": "eslint --cache --fix",

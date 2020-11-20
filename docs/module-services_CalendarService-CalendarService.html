@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Namespace: User</title>
+    <title>JSDoc: Class: CalendarService</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Namespace: User</h1>
+    <h1 class="page-title">Class: CalendarService</h1>
 
     
 
@@ -28,7 +28,8 @@
 
 <header>
     
-        <h2>User</h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>
+            <span class="ancestors"><a href="module-services_CalendarService.html">services/CalendarService</a>~</span>CalendarService<span class="signature">(googleClient, accessToken)</span><span class="type-signature"></span></h2>
         
     
 </header>
@@ -37,17 +38,33 @@
     <div class="container-overview">
     
         
-            <div class="description"><p>User document schema</p></div>
-        
-
-        
-
-
-    <h5 class="subsection-title">Properties:</h5>
 
     
 
-<table class="props">
+    
+    <h4 class="name" id="CalendarService"><span class="type-signature"></span>new CalendarService<span class="signature">(googleClient, accessToken)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Constructor for CalendarService class</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
     <thead>
     <tr>
         
@@ -69,13 +86,13 @@
 
         <tr>
             
-                <td class="name"><code>_id</code></td>
+                <td class="name"><code>googleClient</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">OAuth2Client</span>
 
 
             
@@ -85,20 +102,20 @@
 
             
 
-            <td class="description last"><p>user id</p></td>
+            <td class="description last"><p>Google OAuth2Client object</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>name</code></td>
+                <td class="name"><code>accessToken</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">string</span>
 
 
             
@@ -108,35 +125,14 @@
 
             
 
-            <td class="description last"><p>user name</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>email</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>user email</p></td>
+            <td class="description last"><p>Access Token for google OAuth2</p></td>
         </tr>
 
     
     </tbody>
 </table>
+
+
 
 
 
@@ -170,7 +166,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_user.js.html">models/user.js</a>, <a href="models_user.js.html#line3">line 3</a>
+        <a href="services_CalendarService.js.html">services/CalendarService.js</a>, <a href="services_CalendarService.js.html#line18">line 18</a>
     </li></ul></dd>
     
 
@@ -182,7 +178,24 @@
 </dl>
 
 
-        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
     </div>
 
@@ -200,6 +213,147 @@
 
     
 
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="getEvents"><span class="type-signature">(async) </span>getEvents<span class="signature">(options)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Gets a certain set of events from calendar api</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>JSON object representing options to be passed to calendar api</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="services_CalendarService.js.html">services/CalendarService.js</a>, <a href="services_CalendarService.js.html#line30">line 30</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
     
 
     
