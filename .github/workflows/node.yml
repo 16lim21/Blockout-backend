@@ -32,7 +32,6 @@ jobs:
         PORT: ${{secrets.PORT}}
       run: |
         ls -al
-        npm link './server/services'
         npm run test
         npx nyc report --reporter=text-lcov > coverage.lcov
     - name: Upload to codecov
