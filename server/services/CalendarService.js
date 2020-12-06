@@ -1,5 +1,5 @@
 /**
- * Service that interacts with google calendar
+ * Service to interact with google calendar API
  * @module services/CalendarService
  * @requires google-auth-library
  * @requires googleapis

@@ -1,7 +1,12 @@
+/**
+ * Handles user verification and authentication
+ * @module services/UserService
+ */
 const User = require('../models/user')
 
 /**
  * Gets all users from mongodb database
+ * @returns {Document} - Returns all user documents
  */
 function findAllUsers () {
     return User.find({})
@@ -10,6 +15,7 @@ function findAllUsers () {
 /**
  * Get user from mongodb database based on user id
  * @param {string} userid - userid string from google login
+ * @returns {document} - returns user document by ID field
  */
 function getUser (userid) {
     return User.findById({ _id: userid })
