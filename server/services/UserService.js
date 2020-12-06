@@ -1,5 +1,5 @@
 /**
- * Handles user verification and authentication
+ * Service to interact with User database
  * @module services/UserService
  */
 const User = require('../models/user')
