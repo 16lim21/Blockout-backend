@@ -3,6 +3,7 @@
  * @module services/ToDoService
  */
 const ToDo = require('../models/todo')
+const UserService = require('./UserService')
 
 /**
  * Gets all users from mongodb database
@@ -25,11 +26,15 @@ function getItem (id) {
  * Post new item
  * @function
  * @param {Object} body - object representing todo item
+ * @param {String} userid - id for user that created the todo item
  * @returns {Promise} – Promise to return document in mongoDB database
  */
-function postItem (body) {
+async function postItem (body, userid) {
     const todo = new ToDo(body)
-    return todo.save()
+    return todo.save((err, todo) => {
+        if (err) throw err
+        UserService.pushItem(userid, 'todos', todo.id)
+    })
 }
 
 function patchItem (id, body, flags) {
@@ -38,10 +43,13 @@ function patchItem (id, body, flags) {
 
 /**
  * Delete specific item
- * @param {string} id - ID string
+ * @param {string} id - ID representing todo object
  */
-function deleteItem (id) {
-    return ToDo.deleteOne({ _id: id })
+function deleteItem (id, userid) {
+    return ToDo.deleteOne({ _id: id }, (err) => {
+        if (err) throw err
+        UserService.deleteItem(userid, 'todos', id)
+    })
 }
 
 module.exports = {

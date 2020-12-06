@@ -44,10 +44,31 @@ function deleteUser (userid) {
     return User.deleteOne({ _id: userid })
 }
 
+/**
+ * A generic function to push an array element into any User attributes
+ * @param {String} userid - The id of the user object we want to modify
+ * @param {Object} field - the specific field we want to push to
+ * @param {Object} value - the value we want to push into the array
+ */
+function pushItem (userid, field, value) {
+    User.update({ _id: userid }, { $push: { [field]: value } })
+}
+/**
+ * A generic function to delete an array element from a User attribute
+ * @param {String} userid - The id of the user object we want to modify
+ * @param {Object} field - the specific field we want to push to
+ * @param {Object} value - the value we want to push into the array
+ */
+function deleteItem (userid, field, value) {
+    User.update({ _id: userid }, { $pullAll: { [field]: value } })
+}
+
 module.exports = {
     findAllUsers,
     getUser,
     postUser,
     patchUser,
-    deleteUser
+    deleteUser,
+    pushItem,
+    deleteItem
 }
