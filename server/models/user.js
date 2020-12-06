@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-
+const ToDo = require('./todo')
 /**
  * User document schema
  * @namespace User
@@ -24,6 +24,9 @@ const schema = mongoose.Schema(
         email: {
             type: String,
             required: true
+        },
+        todos: {
+            type: [ToDo]
         }
     },
     { _id: false }
