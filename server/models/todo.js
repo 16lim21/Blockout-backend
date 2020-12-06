@@ -6,8 +6,8 @@ const mongoose = require('mongoose')
  * @property {String} name - todo name
  * @property {Number} duration - time required to complete todo item
  * @property {Date} deadline - date and time the item is due
- * @property {Number} minDuration - minimum amount of time for each event
- * @property {Number} maxDuration - maximum amount of time for each event
+ * @property {Number} minDuration - minimum amount of time in hours for each event
+ * @property {Number} maxDuration - maximum amount of time in hours for each event
  */
 const schema = mongoose.Schema({
     name: {
@@ -26,7 +26,8 @@ const schema = mongoose.Schema({
         type: Number
     },
     maxDuration: {
-        type: Number
+        type: Number,
+        default: 1
     }
 })
 
