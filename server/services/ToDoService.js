@@ -30,11 +30,18 @@ function getItem (id) {
  * @returns {Promise} – Promise to return document in mongoDB database
  */
 async function postItem (body, userid) {
+    if (!userid) throw Error('missing user id')
+
     const todo = new ToDo(body)
-    return todo.save((err, todo) => {
-        if (err) throw err
-        UserService.pushItem(userid, 'todos', todo.id)
-    })
+
+    const user = await UserService.pushItem(userid, 'todos', todo.id)
+    if (user instanceof Error) throw user
+
+    return todo
+        .save((err, todo) => {
+            if (err) return Error(err)
+        })
+        .catch((error) => console.log(error))
 }
 
 function patchItem (id, body, flags) {
@@ -42,7 +49,7 @@ function patchItem (id, body, flags) {
 }
 
 /**
- * Delete specific item
+ * Delete specific item and from user todo array
  * @param {string} id - ID representing todo object
  */
 function deleteItem (id, userid) {
@@ -52,10 +59,21 @@ function deleteItem (id, userid) {
     })
 }
 
+/**
+ * Delete specific todo (mainly for testing purposes)
+ * @param {string} id - ID representing todo object
+ */
+function deleteToDo (id) {
+    return ToDo.deleteOne({ _id: id }, (err) => {
+        if (err) throw err
+    })
+}
+
 module.exports = {
     findAllItems,
     getItem,
     postItem,
     patchItem,
-    deleteItem
+    deleteItem,
+    deleteToDo
 }

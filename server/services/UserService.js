@@ -51,7 +51,23 @@ function deleteUser (userid) {
  * @param {Object} value - the value we want to push into the array
  */
 function pushItem (userid, field, value) {
-    User.update({ _id: userid }, { $push: { [field]: value } })
+    const query = {}
+    query[field] = value
+
+    return User.findOneAndUpdate({ _id: userid }, { $push: query })
+        .then((updatedDocument) => {
+            if (updatedDocument) {
+                console.log(
+                    `Successfully updated document: ${updatedDocument}.`
+                )
+                return updatedDocument
+            } else {
+                return Error("Couldn't find matching document")
+            }
+        })
+        .catch((error) =>
+            console.error(`Failed to find and update document: ${error}`)
+        )
 }
 /**
  * A generic function to delete an array element from a User attribute

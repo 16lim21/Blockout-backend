@@ -10,7 +10,7 @@ const CalendarService = require('../../services/CalendarService')
 const ToDoService = require('../../services/ToDoService')
 
 /**
- * Gets user events
+ * Gets user's todo events
  */
 router.get('/events', async (request, response) => {
     try {
@@ -44,7 +44,16 @@ router.post('/todo', (request, response) => {
     if (request.body.minDuration) todo.minDuration = request.body.minDuration
     if (request.body.maxDuration) todo.maxDuration = request.body.maxDuration
 
-    ToDoService.postItem(todo)
+    ToDoService.postItem(todo, request.session.user_id)
+        .then((result) => response.json(result))
+        .catch((error) => {
+            console.log(error)
+            response.status(400).send(error)
+        })
+})
+
+router.delete('/todo/:id', (request, response) => {
+    ToDoService.deleteToDo(request.params.id)
         .then((result) => response.json(result))
         .catch((error) => response.send(error))
 })
