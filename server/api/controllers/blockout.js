@@ -48,17 +48,12 @@ router.post('/todo', (request, response) => {
         .then((result) => response.json(result))
         .catch((error) => {
             console.log(error)
-            response.status(400).send(error)
+            response.status(400).send({ error: error.message })
         })
 })
 
-// NOTE NOTE NOTE Change deleteToDo to deleteItem for production!!!
 router.delete('/todo/:id', (request, response) => {
-    // ToDoService.deleteToDo(request.params.id)
-    //     .then((result) => response.json(result))
-    //     .catch((error) => response.send(error))
-
-    ToDoService.deleteItem(request.params.id, '1')
+    ToDoService.deleteItem(request.params.id, request.session.user_id)
         .then((result) => response.json(result))
         .catch((error) => response.send(error))
 })

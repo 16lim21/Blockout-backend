@@ -30,8 +30,7 @@ function getItem (id) {
  * @returns {Promise} – Promise to return document in mongoDB database
  */
 async function postItem (body, userid) {
-    // if (!userid) throw Error('missing user id')
-    if (!userid) userid = '1'
+    if (!userid) throw Error('missing user id')
 
     const todo = new ToDo(body)
 
@@ -52,19 +51,12 @@ function patchItem (id, body, flags) {
  * @param {string} id - ID representing todo object
  */
 async function deleteItem (id, userid) {
-    const user = await UserService.deleteItem(userid, 'todos', id)
-    if (user instanceof Error) throw user
+    // For testing purposes, I omit userid to delete directly from todo table
+    if (userid) {
+        const user = await UserService.deleteItem(userid, 'todos', id)
+        if (user instanceof Error) throw user
+    }
 
-    return ToDo.deleteOne({ _id: id }, (err) => {
-        if (err) throw err
-    })
-}
-
-/**
- * Delete specific todo (mainly for testing purposes)
- * @param {string} id - ID representing todo object
- */
-function deleteToDo (id) {
     return ToDo.deleteOne({ _id: id }, (err) => {
         if (err) throw err
     })
@@ -75,6 +67,5 @@ module.exports = {
     getItem,
     postItem,
     patchItem,
-    deleteItem,
-    deleteToDo
+    deleteItem
 }
