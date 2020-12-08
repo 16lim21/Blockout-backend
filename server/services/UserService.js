@@ -76,7 +76,24 @@ function pushItem (userid, field, value) {
  * @param {Object} value - the value we want to push into the array
  */
 function deleteItem (userid, field, value) {
-    User.update({ _id: userid }, { $pullAll: { [field]: value } })
+    const query = {}
+    query[field] = [value]
+    console.log(query)
+
+    User.findOneAndUpdate({ _id: userid }, { $pullAll: query })
+        .then((updatedDocument) => {
+            if (updatedDocument) {
+                console.log(
+                    `Successfully deleted document: ${updatedDocument}.`
+                )
+                return updatedDocument
+            } else {
+                return Error("Couldn't find matching document")
+            }
+        })
+        .catch((error) =>
+            console.error(`Failed to find and delete document: ${error}`)
+        )
 }
 
 module.exports = {

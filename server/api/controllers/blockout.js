@@ -52,8 +52,13 @@ router.post('/todo', (request, response) => {
         })
 })
 
+// NOTE NOTE NOTE Change deleteToDo to deleteItem for production!!!
 router.delete('/todo/:id', (request, response) => {
-    ToDoService.deleteToDo(request.params.id)
+    // ToDoService.deleteToDo(request.params.id)
+    //     .then((result) => response.json(result))
+    //     .catch((error) => response.send(error))
+
+    ToDoService.deleteItem(request.params.id, '1')
         .then((result) => response.json(result))
         .catch((error) => response.send(error))
 })
