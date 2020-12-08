@@ -28,7 +28,11 @@ router.get('/events', async (request, response) => {
  * Gets user todos
  */
 router.get('/todo', (request, response) => {
-    ToDoService.findAllItems().then((todos) => response.json(todos))
+    try {
+        ToDoService.findAllItems().then((todos) => response.json(todos))
+    } catch (error) {
+        response.status(400).send(error)
+    }
 })
 
 /**
