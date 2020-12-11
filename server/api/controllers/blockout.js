@@ -10,7 +10,7 @@ const CalendarService = require('../../services/CalendarService')
 const ToDoService = require('../../services/ToDoService')
 
 /**
- * Gets user's todo events
+ * Gets user's todo events (just for testing, remove in release version 0.2.0)
  */
 router.get('/events', async (request, response) => {
     try {
@@ -29,7 +29,8 @@ router.get('/events', async (request, response) => {
  */
 router.get('/todo', (request, response) => {
     try {
-        ToDoService.findAllItems().then((todos) => response.json(todos))
+        const userId = request.session.user_id
+        ToDoService.findAllItems(userId).then((todos) => response.json(todos))
     } catch (error) {
         response.status(400).send(error)
     }
@@ -40,10 +41,11 @@ router.get('/todo', (request, response) => {
  */
 router.post('/todo', (request, response) => {
     // receives deadline in YYYY-MM-DDTHH:MM:SS format
+    console.log(request.body)
     const todo = {
         name: request.body.name,
         duration: request.body.duration,
-        deadline: new Date(request.body.deadline + 'z')
+        deadline: new Date(request.body.deadline + 'Z')
     }
     if (request.body.minDuration) todo.minDuration = request.body.minDuration
     if (request.body.maxDuration) todo.maxDuration = request.body.maxDuration
