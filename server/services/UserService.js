@@ -57,9 +57,6 @@ function pushItem (userid, field, value) {
     return User.findOneAndUpdate({ _id: userid }, { $push: query })
         .then((updatedDocument) => {
             if (updatedDocument) {
-                console.log(
-                    `Successfully updated document: ${updatedDocument}.`
-                )
                 return updatedDocument
             } else {
                 return Error("Couldn't find matching document")

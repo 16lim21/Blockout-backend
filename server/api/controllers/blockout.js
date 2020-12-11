@@ -29,19 +29,20 @@ router.get('/events', async (request, response) => {
  */
 router.get('/todo', (request, response) => {
     try {
-        const userId = request.session.user_id
+        var userId = request.session.user_id
+        if (!userId) userId = '104789062175674957396'
         ToDoService.findAllItems(userId).then((todos) => response.json(todos))
     } catch (error) {
         response.status(400).send(error)
+        console.log(error)
     }
 })
 
 /**
  * Posts a new user todo
  */
-router.post('/todo', (request, response) => {
+router.post('/todo', async (request, response) => {
     // receives deadline in YYYY-MM-DDTHH:MM:SS format
-    console.log(request.body)
     const todo = {
         name: request.body.name,
         duration: request.body.duration,
@@ -50,10 +51,18 @@ router.post('/todo', (request, response) => {
     if (request.body.minDuration) todo.minDuration = request.body.minDuration
     if (request.body.maxDuration) todo.maxDuration = request.body.maxDuration
 
+    console.log(request.session)
+    const accessToken = request.session.access_token
+    const calendarServiceInstance = new CalendarService(accessToken)
+    const eventId = await calendarServiceInstance.postEvents(todo)
+    todo.events = [eventId]
+
     ToDoService.postItem(todo, request.session.user_id)
-        .then((result) => response.json(result))
+        .then((result) => {
+            response.json(result)
+        })
         .catch((error) => {
-            console.log(error)
+            console.log('error', error)
             response.status(400).send({ error: error.message })
         })
 })

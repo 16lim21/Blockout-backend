@@ -40,8 +40,8 @@ async function postItem (body, userid) {
     const user = await UserService.pushItem(userid, 'todos', todo.id)
     if (user instanceof Error) throw user
 
-    return todo.save((err, todo) => {
-        if (err) return Error(err)
+    return todo.save().catch((error) => {
+        throw error
     })
 }
 
@@ -54,7 +54,7 @@ function patchItem (id, body, flags) {
  * @param {string} id - ID representing todo object
  */
 async function deleteItem (id, userid) {
-    // For testing purposes, I omit userid to delete directly from todo table
+    // For testing purposes, I give option omit userid to delete directly from todo table
     if (userid) {
         const user = await UserService.deleteItem(userid, 'todos', id)
         if (user instanceof Error) throw user
