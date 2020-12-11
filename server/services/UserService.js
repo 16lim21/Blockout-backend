@@ -75,13 +75,12 @@ function pushItem (userid, field, value) {
 function deleteItem (userid, field, value) {
     const query = {}
     query[field] = [value]
-    console.log(query)
 
     User.findOneAndUpdate({ _id: userid }, { $pullAll: query })
         .then((updatedDocument) => {
             if (updatedDocument) {
                 console.log(
-                    `Successfully deleted document: ${updatedDocument}.`
+                    `Successfully deleted item from document: ${updatedDocument}.`
                 )
                 return updatedDocument
             } else {

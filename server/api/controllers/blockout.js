@@ -51,7 +51,6 @@ router.post('/todo', async (request, response) => {
     if (request.body.minDuration) todo.minDuration = request.body.minDuration
     if (request.body.maxDuration) todo.maxDuration = request.body.maxDuration
 
-    console.log(request.session)
     const accessToken = request.session.access_token
     const calendarServiceInstance = new CalendarService(accessToken)
     const eventId = await calendarServiceInstance.postEvents(todo)
@@ -62,7 +61,6 @@ router.post('/todo', async (request, response) => {
             response.json(result)
         })
         .catch((error) => {
-            console.log('error', error)
             response.status(400).send({ error: error.message })
         })
 })
