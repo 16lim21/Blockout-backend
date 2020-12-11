@@ -54,14 +54,13 @@ function patchItem (id, body, flags) {
  * @param {string} id - ID representing todo object
  */
 async function deleteItem (id, userid) {
-    // For testing purposes, I give option omit userid to delete directly from todo table
-    if (userid) {
-        const user = await UserService.deleteItem(userid, 'todos', id)
-        if (user instanceof Error) throw user
-    }
-
     return ToDo.deleteOne({ _id: id }, (err) => {
         if (err) throw err
+
+        // For testing purposes, I give option omit userid to delete directly from todo table
+        if (userid) {
+            UserService.deleteItem(userid, 'todos', id)
+        }
     })
 }
 

@@ -77,6 +77,21 @@ class CalendarService {
         })
         return result.data.id
     }
+
+    /**
+     * Deletes an event with the calendar api
+     * @param {Object} event - eventId of event to delete
+     * @param {String} calendarId - String representing calendarId to delete from
+     */
+    async deleteEvent (eventId, calendarId) {
+        if (!calendarId) calendarId = 'primary'
+
+        const result = await this.calendar.events.delete({
+            calendarId: calendarId,
+            eventId: eventId
+        })
+        return result
+    }
 }
 
 module.exports = CalendarService

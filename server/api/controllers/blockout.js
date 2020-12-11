@@ -65,7 +65,16 @@ router.post('/todo', async (request, response) => {
         })
 })
 
-router.delete('/todo/:id', (request, response) => {
+router.delete('/todo/:id', async (request, response) => {
+    const accessToken = request.session.access_token
+    const calendarServiceInstance = new CalendarService(accessToken)
+    const events = await ToDoService.getItem(request.params.id).then(
+        (result) => result.events
+    )
+    Array.prototype.forEach.call(events, (eventId) =>
+        calendarServiceInstance.deleteEvent(eventId)
+    )
+
     ToDoService.deleteItem(request.params.id, request.session.user_id)
         .then((result) => response.json(result))
         .catch((error) => response.send(error))
