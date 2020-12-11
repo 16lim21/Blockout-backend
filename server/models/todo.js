@@ -8,6 +8,7 @@ const mongoose = require('mongoose')
  * @property {Date} deadline - date and time the item is due
  * @property {Number} minDuration - minimum amount of time in hours for each event
  * @property {Number} maxDuration - maximum amount of time in hours for each event
+ * @property {Array} events - Array of Google Calendar IDs that represent events for a ToDo
  */
 const schema = mongoose.Schema({
     name: {
@@ -28,7 +29,8 @@ const schema = mongoose.Schema({
     maxDuration: {
         type: Number,
         default: 1
-    }
+    },
+    events: [{ type: String, required: true }]
 })
 
 module.exports = mongoose.model('ToDo', schema)

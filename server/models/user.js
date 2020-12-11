@@ -5,6 +5,7 @@ const mongoose = require('mongoose')
  * @property {String} _id - user id
  * @property {String} name - user name
  * @property {String} email - user email
+ * @property {Array} todos - Array of ToDo ObjectIDs representing user todos
  */
 const schema = mongoose.Schema(
     {
