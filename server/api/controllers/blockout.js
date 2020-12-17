@@ -10,21 +10,6 @@ const CalendarService = require('../../services/calendar-service')
 const ToDoService = require('../../services/todo-service')
 
 /**
- * Gets user's todo events (just for testing, remove in release version 0.2.0)
- */
-router.get('/events', async (request, response) => {
-    try {
-        const accessToken = request.session.access_token
-        const calendarServiceInstance = new CalendarService(accessToken)
-        const events = await calendarServiceInstance.getEvents()
-
-        response.json(events)
-    } catch (error) {
-        response.status(400).send(error)
-    }
-})
-
-/**
  * Gets user todos
  */
 router.get('/todo', (request, response) => {
