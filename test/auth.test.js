@@ -1,6 +1,6 @@
 const chai = require('chai')
-const AuthService = require('../server/services/AuthService')
-const UserService = require('../server/services/UserService')
+const AuthService = require('../server/services/auth-service')
+const UserService = require('../server/services/user-service')
 const server = require('../server/server')
 const assert = require('assert')
 const { OAuth2Client, LoginTicket } = require('google-auth-library')

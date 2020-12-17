@@ -3,7 +3,7 @@
  * @module services/ToDoService
  */
 const ToDo = require('../models/todo')
-const UserService = require('./UserService')
+const UserService = require('./user-service')
 
 /**
  * Gets all users from mongodb database

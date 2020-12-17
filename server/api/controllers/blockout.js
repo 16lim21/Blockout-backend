@@ -6,8 +6,8 @@
  */
 const express = require('express')
 const router = express.Router()
-const CalendarService = require('../../services/CalendarService')
-const ToDoService = require('../../services/ToDoService')
+const CalendarService = require('../../services/calendar-service')
+const ToDoService = require('../../services/todo-service')
 
 /**
  * Gets user's todo events (just for testing, remove in release version 0.2.0)
