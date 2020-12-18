@@ -42,7 +42,8 @@
         "nock": "^13.0.4",
         "nodemon": "^2.0.4",
         "nyc": "^15.1.0",
-        "prettier": "^2.1.2"
+        "prettier": "^2.1.2",
+        "sinon": "^9.2.2"
     },
     "dependencies": {
         "body-parser": "^1.19.0",

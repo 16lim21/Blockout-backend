@@ -35,8 +35,6 @@ const session = require('express-session')
 const cors = require('cors')
 const app = express()
 
-const http = require('http').createServer(app)
-
 app.use(
     cors({
         origin: [
@@ -69,9 +67,11 @@ const index = require('./api/controllers/index')
 app.use('/api', index)
 
 // Listen on specified port for express app
+const http = require('http').createServer(app)
 const PORT = process.env.PORT || 3001
 http.listen(PORT, () => {
     console.log(`Started server on port ${PORT}`)
+    http.emit('Started')
 })
 
 process.on('SIGINT', () => {
@@ -79,4 +79,4 @@ process.on('SIGINT', () => {
     process.exit(1)
 })
 
-module.exports = app
+module.exports = http
