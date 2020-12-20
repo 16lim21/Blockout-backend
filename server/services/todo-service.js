@@ -57,7 +57,7 @@ async function deleteItem (id, userid) {
     return ToDo.deleteOne({ _id: id }, (err) => {
         if (err) throw err
 
-        // For testing purposes, I give option omit userid to delete directly from todo table
+        // For testing purposes, I give option to omit userid and delete directly from todo table
         if (userid) {
             UserService.deleteItem(userid, 'todos', id)
         }

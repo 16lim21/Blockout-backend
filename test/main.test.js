@@ -20,7 +20,7 @@ describe('Top level Test', () => {
         requester.close()
     })
 
-    importTest('authTest', './auth.test')
+    importTest('Authentication Tests', './auth.test')
     importTest('User Tests', './user.test')
     importTest('Todo Tests', './todo.test')
 })

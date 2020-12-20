@@ -24,6 +24,7 @@ router.post('/tokensignin', async (request, response) => {
         request.session.access_token = request.body.access_token
         request.session.user_id = result._id
         request.session.save()
+
         // Send back response
         response.json(result)
     } catch (error) {

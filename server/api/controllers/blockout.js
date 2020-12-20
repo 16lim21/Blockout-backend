@@ -15,7 +15,6 @@ const ToDoService = require('../../services/todo-service')
 router.get('/todo', (request, response) => {
     try {
         var userId = request.session.user_id
-        if (!userId) userId = '104789062175674957396'
         ToDoService.findAllItems(userId).then((todos) => response.json(todos))
     } catch (error) {
         response.status(400).send(error)
@@ -27,7 +26,7 @@ router.get('/todo', (request, response) => {
  * Posts a new user todo
  */
 router.post('/todo', async (request, response) => {
-    // receives deadline in YYYY-MM-DDTHH:MM:SS format
+    // receives deadline in YYYY-MM-DDTHH:MM:SS format in utc time
     const todo = {
         name: request.body.name,
         duration: request.body.duration,
