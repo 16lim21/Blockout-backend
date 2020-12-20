@@ -3,6 +3,7 @@ const AuthService = require('../server/services/auth-service')
 const CalendarService = require('../server/services/calendar-service')
 const sinon = require('sinon')
 const chai = require('chai')
+chai.should()
 const moment = require('moment')
 const expect = chai.expect
 
@@ -104,9 +105,7 @@ describe('Testing Todo service and routes', function () {
         it('Should delete the todo test event for the test user', (done) => {
             sinon
                 .stub(CalendarService.prototype, 'deleteEvent')
-                .callsFake((eventId, calendarId) => {
-
-                })
+                .callsFake((eventId, calendarId) => {})
 
             agent
                 .delete(`/api/blockout/todo/${testId}`)

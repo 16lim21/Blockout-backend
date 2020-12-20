@@ -12,8 +12,9 @@ function importTest (name, path) {
 
 describe('Top level Test', () => {
     let requester
-    before(() => {
+    before(async () => {
         requester = chai.request(server).keepOpen()
+        await new Promise((resolve) => setTimeout(resolve, 1000))
     })
 
     after(() => {
