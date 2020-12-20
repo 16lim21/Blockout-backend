@@ -76,7 +76,7 @@ function deleteItem (userid, field, value) {
     const query = {}
     query[field] = [value]
 
-    User.findOneAndUpdate({ _id: userid }, { $pullAll: query })
+    return User.findOneAndUpdate({ _id: userid }, { $pullAll: query })
         .then((updatedDocument) => {
             if (updatedDocument) {
                 console.log(

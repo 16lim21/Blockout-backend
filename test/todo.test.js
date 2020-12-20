@@ -1,7 +1,6 @@
 // const ToDoService = require('../server/services/todo-service')
 const AuthService = require('../server/services/auth-service')
 const CalendarService = require('../server/services/calendar-service')
-// const assert = require('assert')
 const sinon = require('sinon')
 const chai = require('chai')
 const moment = require('moment')
@@ -59,6 +58,7 @@ describe('Testing Todo service and routes', function () {
                 .then((response) => {
                     response.should.have.status(200)
                     response.body.should.be.a('array')
+                    done()
                 })
                 .catch((error) => {
                     console.log(error)

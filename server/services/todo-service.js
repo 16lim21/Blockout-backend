@@ -53,15 +53,12 @@ function patchItem (id, body, flags) {
  * Delete specific item and from user todo array
  * @param {string} id - ID representing todo object
  */
-async function deleteItem (id, userid) {
-    return ToDo.deleteOne({ _id: id }, (err) => {
-        if (err) throw err
-
-        // For testing purposes, I give option to omit userid and delete directly from todo table
-        if (userid) {
-            UserService.deleteItem(userid, 'todos', id)
-        }
-    })
+function deleteItem (id, userid) {
+    return ToDo.deleteOne({ _id: id })
+        .then(() => UserService.deleteItem(userid, 'todos', id))
+        .catch((error) => {
+            throw error
+        })
 }
 
 module.exports = {
