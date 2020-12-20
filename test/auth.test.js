@@ -9,6 +9,8 @@ const { OAuth2Client, LoginTicket } = require('google-auth-library')
 let server
 if (!process.env.SERVER_URL) {
     server = 'http://localhost:3001'
+} else {
+    server = process.env.SERVER_URL
 }
 
 describe('Testing User Auth Service and User Auth Route', () => {

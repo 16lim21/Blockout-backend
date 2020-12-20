@@ -8,6 +8,8 @@ const expect = chai.expect
 let server
 if (!process.env.SERVER_URL) {
     server = 'http://localhost:3001'
+} else {
+    server = process.env.SERVER_URL
 }
 
 describe('Testing Todo service and routes', function () {
