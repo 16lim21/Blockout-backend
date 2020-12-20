@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: CalendarService</title>
+    <title>JSDoc: Module: services/ToDoService</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: CalendarService</h1>
+    <h1 class="page-title">Module: services/ToDoService</h1>
 
     
 
@@ -28,8 +28,8 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>
-            <span class="ancestors"><a href="module-services_CalendarService.html">services/CalendarService</a>~</span>CalendarService<span class="signature">(googleClient, accessToken)</span><span class="type-signature"></span></h2>
+        
+            
         
     
 </header>
@@ -38,99 +38,20 @@
     <div class="container-overview">
     
         
-
-    
-
-    
-    <h4 class="name" id="CalendarService"><span class="type-signature"></span>new CalendarService<span class="signature">(googleClient, accessToken)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    <p>Constructor for CalendarService class</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
+            <div class="description"><p>Service to interact with todo database</p></div>
         
 
         
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>googleClient</code></td>
             
 
-            <td class="type">
-            
-                
-<span class="param-type">OAuth2Client</span>
 
 
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Google OAuth2Client object</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>accessToken</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
 
 
-            
-            </td>
 
-            
 
-            
 
-            <td class="description last"><p>Access Token for google OAuth2</p></td>
-        </tr>
 
-    
-    </tbody>
-</table>
 
 
 
@@ -166,7 +87,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="services_calendar-service.js.html">services/calendar-service.js</a>, <a href="services_calendar-service.js.html#line19">line 19</a>
+        <a href="services_todo-service.js.html">services/todo-service.js</a>, <a href="services_todo-service.js.html#line1">line 1</a>
     </li></ul></dd>
     
 
@@ -196,6 +117,7 @@
 
 
 
+        
     
     </div>
 
@@ -222,7 +144,7 @@
     
 
     
-    <h4 class="name" id="deleteEvent"><span class="type-signature">(async) </span>deleteEvent<span class="signature">(event, calendarId)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="~deleteItem"><span class="type-signature">(inner) </span>deleteItem<span class="signature">(id)</span><span class="type-signature"></span></h4>
     
 
     
@@ -230,7 +152,7 @@
 
 
 <div class="description">
-    <p>Deletes an event with the calendar api</p>
+    <p>Delete specific item and from user todo array</p>
 </div>
 
 
@@ -266,13 +188,13 @@
 
         <tr>
             
-                <td class="name"><code>event</code></td>
+                <td class="name"><code>id</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">string</span>
 
 
             
@@ -282,14 +204,128 @@
 
             
 
-            <td class="description last"><p>eventId of event to delete</p></td>
+            <td class="description last"><p>ID representing todo object</p></td>
         </tr>
 
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="services_todo-service.js.html">services/todo-service.js</a>, <a href="services_todo-service.js.html#line56">line 56</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~findAllItems"><span class="type-signature">(async, inner) </span>findAllItems<span class="signature">(userId)</span><span class="type-signature"> &rarr; {Document}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Gets all users from mongodb database</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
     
 
         <tr>
             
-                <td class="name"><code>calendarId</code></td>
+                <td class="name"><code>userId</code></td>
             
 
             <td class="type">
@@ -305,7 +341,7 @@
 
             
 
-            <td class="description last"><p>String representing calendarId to delete from</p></td>
+            <td class="description last"><p>User ID representing current user</p></td>
         </tr>
 
     
@@ -346,7 +382,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="services_calendar-service.js.html">services/calendar-service.js</a>, <a href="services_calendar-service.js.html#line86">line 86</a>
+        <a href="services_todo-service.js.html">services/todo-service.js</a>, <a href="services_todo-service.js.html#line13">line 13</a>
     </li></ul></dd>
     
 
@@ -371,6 +407,30 @@
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <ul>
+<li>Returns all todo documents for a given user</li>
+</ul>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Document</span>
+
+
+    </dd>
+</dl>
+
+    
 
 
 
@@ -382,7 +442,7 @@
     
 
     
-    <h4 class="name" id="getEvents"><span class="type-signature">(async) </span>getEvents<span class="signature">(metadata)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="~getItem"><span class="type-signature">(inner) </span>getItem<span class="signature">(id)</span><span class="type-signature"> &rarr; {document}</span></h4>
     
 
     
@@ -390,7 +450,7 @@
 
 
 <div class="description">
-    <p>Gets a certain set of events from calendar api</p>
+    <p>Get specific document</p>
 </div>
 
 
@@ -426,167 +486,7 @@
 
         <tr>
             
-                <td class="name"><code>metadata</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Object representing metadata to be passed to calendar api</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="services_calendar-service.js.html">services/calendar-service.js</a>, <a href="services_calendar-service.js.html#line35">line 35</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="postEvents"><span class="type-signature">(async) </span>postEvents<span class="signature">(event, calendarId)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    <p>Post a events to the calendar api</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>event</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Object representing event data</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>calendarId</code></td>
+                <td class="name"><code>id</code></td>
             
 
             <td class="type">
@@ -602,7 +502,7 @@
 
             
 
-            <td class="description last"><p>String representing calendarId to instert into</p></td>
+            <td class="description last"><p>ToDo ID string</p></td>
         </tr>
 
     
@@ -643,7 +543,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="services_calendar-service.js.html">services/calendar-service.js</a>, <a href="services_calendar-service.js.html#line56">line 56</a>
+        <a href="services_todo-service.js.html">services/todo-service.js</a>, <a href="services_todo-service.js.html#line24">line 24</a>
     </li></ul></dd>
     
 
@@ -668,6 +568,212 @@
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <ul>
+<li>returns document by ID field</li>
+</ul>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">document</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~postItem"><span class="type-signature">(async, inner) </span>postItem<span class="signature">(body, userid)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Post new item</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>body</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>object representing todo item</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>userid</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>id for user that created the todo item</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="services_todo-service.js.html">services/todo-service.js</a>, <a href="services_todo-service.js.html#line35">line 35</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>– Promise to return document in mongoDB database</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
 
 
 

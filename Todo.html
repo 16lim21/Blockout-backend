@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Namespace: User</title>
+    <title>JSDoc: Namespace: Todo</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Namespace: User</h1>
+    <h1 class="page-title">Namespace: Todo</h1>
 
     
 
@@ -28,7 +28,7 @@
 
 <header>
     
-        <h2>User</h2>
+        <h2>Todo</h2>
         
     
 </header>
@@ -37,7 +37,7 @@
     <div class="container-overview">
     
         
-            <div class="description"><p>User document schema</p></div>
+            <div class="description"><p>Todo document schema</p></div>
         
 
         
@@ -69,29 +69,6 @@
 
         <tr>
             
-                <td class="name"><code>_id</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>user id</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
                 <td class="name"><code>name</code></td>
             
 
@@ -108,20 +85,20 @@
 
             
 
-            <td class="description last"><p>user name</p></td>
+            <td class="description last"><p>todo name</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>email</code></td>
+                <td class="name"><code>duration</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">Number</span>
 
 
             
@@ -131,14 +108,83 @@
 
             
 
-            <td class="description last"><p>user email</p></td>
+            <td class="description last"><p>time required to complete todo item</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>todos</code></td>
+                <td class="name"><code>deadline</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Date</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>date and time the item is due</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>minDuration</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>minimum amount of time in hours for each event</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>maxDuration</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>maximum amount of time in hours for each event</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>events</code></td>
             
 
             <td class="type">
@@ -154,7 +200,7 @@
 
             
 
-            <td class="description last"><p>Array of ToDo ObjectIDs representing user todos</p></td>
+            <td class="description last"><p>Array of Google Calendar IDs that represent events for a ToDo</p></td>
         </tr>
 
     
@@ -193,7 +239,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_user.js.html">models/user.js</a>, <a href="models_user.js.html#line2">line 2</a>
+        <a href="models_todo.js.html">models/todo.js</a>, <a href="models_todo.js.html#line3">line 3</a>
     </li></ul></dd>
     
 

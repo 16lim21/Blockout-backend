@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: api/controllers/auth.js</title>
+    <title>JSDoc: Source: services/todo-service.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: api/controllers/auth.js</h1>
+    <h1 class="page-title">Source: services/todo-service.js</h1>
 
     
 
@@ -27,40 +27,75 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * Module to authenticate user sign in
- * @module api/routes/auth
- * @requires express
- * @exports router - express router to handle api calls to /api/tokensignin
+ * Service to interact with todo database
+ * @module services/ToDoService
  */
-const express = require('express')
-const router = express.Router()
-const AuthService = require('../../services/auth-service')
+const ToDo = require('../models/todo')
+const UserService = require('./user-service')
 
 /**
- * Router method to handle post requests to /api/tokensignin
- * @function
- * @async
+ * Gets all users from mongodb database
+ * @param {String} userId - User ID representing current user
+ * @returns {Document} - Returns all todo documents for a given user
  */
-router.post('/tokensignin', async (request, response) => {
-    try {
-        // Authenticate User
-        const authServiceInstance = new AuthService()
-        const result = await authServiceInstance.signIn(request.body.id_token)
+async function findAllItems (userId) {
+    const user = await UserService.getUser(userId)
+    const todos = user.todos
+    return ToDo.find({ _id: { $in: todos } })
+}
 
-        // Add session variables if user is authenticated
-        request.session.cookie.maxAge = request.body.expires_in * 1000
-        request.session.access_token = request.body.access_token
-        request.session.user_id = result._id
-        request.session.save()
+/**
+ * Get specific document
+ * @param {String} id - ToDo ID string
+ * @returns {document} - returns document by ID field
+ */
+function getItem (id) {
+    return ToDo.findById({ _id: id })
+}
 
-        // Send back response
-        response.json(result)
-    } catch (error) {
-        response.status(400).send(error)
-    }
-})
+/**
+ * Post new item
+ * @function
+ * @param {Object} body - object representing todo item
+ * @param {String} userid - id for user that created the todo item
+ * @returns {Promise} – Promise to return document in mongoDB database
+ */
+async function postItem (body, userid) {
+    if (!userid) throw Error('missing user id')
 
-module.exports = router
+    const todo = new ToDo(body)
+
+    const user = await UserService.pushItem(userid, 'todos', todo.id)
+    if (user instanceof Error) throw user
+
+    return todo.save().catch((error) => {
+        throw error
+    })
+}
+
+function patchItem (id, body, flags) {
+    return ToDo.findByIdAndUpdate({ _id: id }, body, flags)
+}
+
+/**
+ * Delete specific item and from user todo array
+ * @param {string} id - ID representing todo object
+ */
+function deleteItem (id, userid) {
+    return ToDo.deleteOne({ _id: id })
+        .then(() => UserService.deleteItem(userid, 'todos', id))
+        .catch((error) => {
+            throw error
+        })
+}
+
+module.exports = {
+    findAllItems,
+    getItem,
+    postItem,
+    patchItem,
+    deleteItem
+}
 </code></pre>
         </article>
     </section>
