@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "start": "node ./server/server.js",
-        "test": "npx nyc mocha './test/**/*.js' --exit",
+        "test": "npx nyc mocha './test/main.test.js' --exit",
         "dev": "nodemon ./server/server.js",
         "docs": "node_modules/.bin/jsdoc -c jsdoc.json README.md"
     },

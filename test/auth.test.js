@@ -1,14 +1,15 @@
 const chai = require('chai')
+chai.should()
+const assert = require('assert')
+const nock = require('nock')
 const AuthService = require('../server/services/auth-service')
 const UserService = require('../server/services/user-service')
-const server = require('../server/server')
-const assert = require('assert')
 const { OAuth2Client, LoginTicket } = require('google-auth-library')
-const nock = require('nock')
 
-const chaiHttp = require('chai-http')
-chai.should()
-chai.use(chaiHttp)
+let server
+if (!process.env.SERVER_URL) {
+    server = 'http://localhost:3001'
+}
 
 describe('Testing User Auth Service and User Auth Route', () => {
     describe('Testing Auth Service', () => {

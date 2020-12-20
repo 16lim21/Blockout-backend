@@ -1,9 +1,10 @@
 const chai = require('chai')
-const chaiHttp = require('chai-http')
-const server = require('../server/server')
 chai.should()
-chai.use(chaiHttp)
 const testId = '123456'
+let server
+if (!process.env.SERVER_URL) {
+    server = 'http://localhost:3001'
+}
 
 describe('Testing User Routes', () => {
     describe('/GET user', () => {

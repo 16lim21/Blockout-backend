@@ -2,29 +2,23 @@
 const AuthService = require('../server/services/auth-service')
 // const assert = require('assert')
 const sinon = require('sinon')
-
 const chai = require('chai')
-const chaiHttp = require('chai-http')
 const expect = chai.expect
-chai.use(chaiHttp)
+
+let server
+if (!process.env.SERVER_URL) {
+    server = 'http://localhost:3001'
+}
 
 describe('Testing Todo service and routes', function () {
     let agent
-    this.timeout(3000)
 
-    before((done) => {
-        const server = require('../server/server')
+    before(() => {
         agent = chai.request.agent(server)
-
-        server.on('Started', () => {
-            console.log('started server!')
-            done()
-        })
     })
 
-    after((done) => {
+    after(() => {
         agent.close()
-        done()
     })
 
     describe('POST /api/tokensignin', () => {
