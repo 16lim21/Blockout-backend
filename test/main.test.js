@@ -13,8 +13,10 @@ function importTest (name, path) {
 describe('Top level Test', () => {
     let requester
     before(async () => {
-        requester = chai.request(server).keepOpen()
-        await new Promise((resolve) => setTimeout(resolve, 1000))
+        if (process.env.NODE_ENV !== 'production') {
+            requester = chai.request(server).keepOpen()
+            await new Promise((resolve) => setTimeout(resolve, 1000))
+        }
     })
 
     after(() => {
