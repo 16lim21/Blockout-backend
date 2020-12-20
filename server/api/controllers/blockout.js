@@ -38,6 +38,8 @@ router.post('/todo', async (request, response) => {
     const accessToken = request.session.access_token
     const calendarServiceInstance = new CalendarService(accessToken)
     const eventId = await calendarServiceInstance.postEvents(todo)
+
+    // Once busininess logic implemented, insert all eventIds into todo.events array.
     todo.events = [eventId]
 
     ToDoService.postItem(todo, request.session.user_id)
@@ -60,7 +62,7 @@ router.delete('/todo/:id', async (request, response) => {
     )
 
     ToDoService.deleteItem(request.params.id, request.session.user_id)
-        .then((result) => response.json(result))
+        .then((result) => response.status(204).json(result))
         .catch((error) => response.send(error))
 })
 
