@@ -31,9 +31,7 @@ jobs:
         MONGODB_URI: ${{secrets.MONGODB_URI}}
         PORT: ${{secrets.PORT}}
       run: |
-        npm run start &
-        sleep 10 &&
-        npm run test &&
+        npm run test
         npx nyc report --reporter=text-lcov > coverage.lcov
     - name: Upload to codecov
       run: npx codecov

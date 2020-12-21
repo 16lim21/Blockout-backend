@@ -11,18 +11,15 @@ function importTest (name, path) {
 
 describe('Top level Test', () => {
     let requester
-    before(async () => {
-        if (process.env.NODE_ENV !== 'production') {
-            const server = require('../server/server')
-            requester = chai.request(server).keepOpen()
-            await new Promise((resolve) => setTimeout(resolve, 1000))
-        }
+    before(async function () {
+        this.timeout(11000)
+        const server = require('../server/server')
+        requester = chai.request(server).keepOpen()
+        await new Promise((resolve) => setTimeout(resolve, 10000))
     })
 
     after(() => {
-        if (process.env.NODE_ENV !== 'production') {
-            requester.close()
-        }
+        requester.close()
     })
 
     importTest('Authentication Tests', './auth.test')
