@@ -1,11 +1,11 @@
 const mongoose = require('mongoose')
-
 /**
  * User document schema
  * @namespace User
  * @property {String} _id - user id
  * @property {String} name - user name
  * @property {String} email - user email
+ * @property {Array} todos - Array of ToDo ObjectIDs representing user todos
  */
 const schema = mongoose.Schema(
     {
@@ -24,7 +24,8 @@ const schema = mongoose.Schema(
         email: {
             type: String,
             required: true
-        }
+        },
+        todos: [{ type: mongoose.Schema.Types.ObjectId, ref: 'ToDo' }]
     },
     { _id: false }
 )

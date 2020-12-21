@@ -5,7 +5,7 @@
  * @exports AuthService - An Authentication Service Class
  */
 const { OAuth2Client } = require('google-auth-library')
-const UserService = require('./UserService')
+const UserService = require('./user-service')
 
 class AuthService {
     /**

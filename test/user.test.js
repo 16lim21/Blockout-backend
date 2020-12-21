@@ -1,13 +1,14 @@
-// Followed tutorial from https://www.digitalocean.com/community/tutorials/test-a-node-restful-api-with-mocha-and-chai#a-better-test
 const chai = require('chai')
-const chaiHttp = require('chai-http')
-const server = require('../server/server')
 chai.should()
-chai.use(chaiHttp)
 const testId = '123456'
+let server
+if (!process.env.SERVER_URL) {
+    server = 'http://localhost:3001'
+} else {
+    server = process.env.SERVER_URL
+}
 
-// Our parent block
-describe('Testing User Database', () => {
+describe('Testing User Routes', () => {
     describe('/GET user', () => {
         it('Should GET all the users', (done) => {
             chai.request(server)
