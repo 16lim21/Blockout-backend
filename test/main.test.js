@@ -1,6 +1,5 @@
 const chai = require('chai')
 const chaiHttp = require('chai-http')
-const server = require('../server/server')
 chai.should()
 chai.use(chaiHttp)
 
@@ -14,6 +13,7 @@ describe('Top level Test', () => {
     let requester
     before(async () => {
         if (process.env.NODE_ENV !== 'production') {
+            const server = require('../server/server')
             requester = chai.request(server).keepOpen()
             await new Promise((resolve) => setTimeout(resolve, 1000))
         }
