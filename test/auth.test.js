@@ -105,7 +105,6 @@ describe('Testing User Auth Service and User Auth Route', () => {
                         console.log(error)
                         done()
                     }
-                    console.log(response)
                     should.exist(response)
                     response.should.have.status(400)
                     done()
