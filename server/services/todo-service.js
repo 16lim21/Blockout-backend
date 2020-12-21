@@ -11,7 +11,7 @@ const UserService = require('./user-service')
  * @returns {Document} - Returns all todo documents for a given user
  */
 async function findAllItems (userId) {
-    const user = UserService.getUser(userId)
+    const user = await UserService.getUser(userId)
     const todos = user.todos
     return ToDo.find({ _id: { $in: todos } })
 }
