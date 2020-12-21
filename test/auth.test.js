@@ -1,5 +1,5 @@
 const chai = require('chai')
-chai.should()
+const should = chai.should()
 const assert = require('assert')
 const nock = require('nock')
 const AuthService = require('../server/services/auth-service')
@@ -105,6 +105,7 @@ describe('Testing User Auth Service and User Auth Route', () => {
                         console.log(error)
                         done()
                     }
+                    should.exist(response)
                     response.should.have.status(400)
                     done()
                 })

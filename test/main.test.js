@@ -20,7 +20,9 @@ describe('Top level Test', () => {
     })
 
     after(() => {
-        requester.close()
+        if (process.env.NODE_ENV !== 'production') {
+            requester.close()
+        }
     })
 
     importTest('Authentication Tests', './auth.test')
