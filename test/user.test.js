@@ -82,7 +82,7 @@ describe('Testing User Routes', () => {
     describe('/PATCH/:id user', () => {
         it('Should PATCH a user given the id', (done) => {
             chai.request(server)
-                .get('/api/users/' + testId)
+                .patch('/api/users/' + testId)
                 .end((err, res) => {
                     if (err) {
                         console.log(err)
