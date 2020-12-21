@@ -12,7 +12,7 @@ Blockout is an application that will interact with google calendar to "block out
 
 # Current Demo/example
 
-![Demo Gif](demo/first-example.gif)
+![Demo Gif](demo/demo.gif)
 
 ## Motivation
 

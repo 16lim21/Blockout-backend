@@ -45,13 +45,9 @@ async function postItem (body, userid) {
     })
 }
 
-function patchItem (id, body, flags) {
-    return ToDo.findByIdAndUpdate({ _id: id }, body, flags)
-}
-
 /**
  * Delete specific item and from user todo array
- * @param {string} id - ID representing todo object
+ * @param {String} id - ID representing todo object
  */
 function deleteItem (id, userid) {
     return ToDo.deleteOne({ _id: id })
@@ -65,6 +61,5 @@ module.exports = {
     findAllItems,
     getItem,
     postItem,
-    patchItem,
     deleteItem
 }

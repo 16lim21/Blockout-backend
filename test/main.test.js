@@ -15,7 +15,7 @@ describe('Top level Test', () => {
         this.timeout(11000)
         const server = require('../server/server')
         requester = chai.request(server).keepOpen()
-        await new Promise((resolve) => setTimeout(resolve, 10000))
+        await new Promise((resolve) => setTimeout(resolve, 9000))
     })
 
     after(() => {

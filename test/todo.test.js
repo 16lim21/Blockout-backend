@@ -15,17 +15,17 @@ if (!process.env.SERVER_URL) {
 }
 
 describe('Testing Todo service and routes', function () {
-    let agent
-    let testId
-    before(() => {
-        agent = chai.request.agent(server)
-    })
-
-    after(() => {
-        agent.close()
-    })
-
     describe('Test /blockout/api/todo controller and routes', () => {
+        let agent
+        let testId
+        before(() => {
+            agent = chai.request.agent(server)
+        })
+
+        after(() => {
+            agent.close()
+        })
+
         it('Should Login with fake user idtoken', (done) => {
             sinon.stub(AuthService.prototype, 'signIn').callsFake((idToken) => {
                 const user = {

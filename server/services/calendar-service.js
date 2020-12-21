@@ -59,7 +59,7 @@ class CalendarService {
         const startTime = moment
             .utc(event.deadline)
             .subtract(event.duration, 'h')
-            .format('YYYY-MM-DD[T]hh:mm:ss[Z]')
+            .format('YYYY-MM-DD[T]HH:mm:ss[Z]')
 
         const eventData = {
             summary: event.name,
