@@ -64,25 +64,17 @@ describe('Testing User Routes', () => {
 
         it('Should GET a user given the id', (done) => {
             chai.request(server)
-                .get('/api/users')
+                .get('/api/users/' + testId)
                 .end((error, response) => {
                     if (error) {
                         console.log(error)
                         done()
                     }
-                    chai.request(server)
-                        .get('/api/users/' + response.body.pop()._id)
-                        .end((error, response) => {
-                            if (error) {
-                                console.log(error)
-                                done()
-                            }
-                            response.should.have.status(200)
-                            response.body.should.have.property('name')
-                            response.body.should.have.property('email')
-                            response.body.should.have.property('name', 'user3')
-                            done()
-                        })
+                    response.should.have.status(200)
+                    response.body.should.have.property('name')
+                    response.body.should.have.property('email')
+                    response.body.should.have.property('name', 'user3')
+                    done()
                 })
         })
     })
@@ -90,25 +82,16 @@ describe('Testing User Routes', () => {
     describe('/PATCH/:id user', () => {
         it('Should PATCH a user given the id', (done) => {
             chai.request(server)
-                .get('/api/users')
+                .get('/api/users/' + testId)
                 .end((err, res) => {
                     if (err) {
                         console.log(err)
                         done()
                     }
-                    chai.request(server)
-                        .patch('/api/users/' + res.body.pop()._id)
-                        .send({ name: 'user4' })
-                        .end((err, res) => {
-                            if (err) {
-                                console.log(err)
-                                done()
-                            }
-                            res.should.have.status(200)
-                            res.body.should.have.property('name')
-                            res.body.should.have.property('email')
-                            done()
-                        })
+                    res.should.have.status(200)
+                    res.body.should.have.property('name')
+                    res.body.should.have.property('email')
+                    done()
                 })
         })
     })
@@ -116,22 +99,14 @@ describe('Testing User Routes', () => {
     describe('/DELETE/:id user', () => {
         it('Should DELETE a user given the id', (done) => {
             chai.request(server)
-                .get('/api/users')
+                .delete('/api/users/' + testId)
                 .end((err, res) => {
                     if (err) {
                         console.log(err)
                         done()
                     }
-                    chai.request(server)
-                        .delete('/api/users/' + res.body.pop()._id)
-                        .end((err, res) => {
-                            if (err) {
-                                console.log(err)
-                                done()
-                            }
-                            res.should.have.status(204)
-                            done()
-                        })
+                    res.should.have.status(204)
+                    done()
                 })
         })
     })

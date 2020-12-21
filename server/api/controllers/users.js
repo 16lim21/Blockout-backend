@@ -66,9 +66,9 @@ router.patch('/:id', (req, res) => {
 router.delete('/:id', (request, response) => {
     UserService.deleteUser(request.params.id)
         .then(() => {
-            response.status(204).end()
+            response.status(204).send()
         })
-        .catch((error) => response.send(error))
+        .catch((error) => response.status(400).send(error))
 })
 
 module.exports = router
