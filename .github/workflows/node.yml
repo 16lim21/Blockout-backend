@@ -24,7 +24,7 @@ jobs:
       run: |
         npm ci
     - name: Lint code with eslint
-      run: npx eslint --debug
+      run: npm run lint
     - name: Run Tests
       env:
         NODE_ENV: production
