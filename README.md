@@ -1,7 +1,7 @@
 # Blockout
 
 ![GitHub](https://img.shields.io/github/license/16lim21/Blockout-backend)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/16lim21/Blockout-backend)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/16lim21/Blockout-backend?include_prereleases)
 ![GitHub issues](https://img.shields.io/github/issues-raw/16lim21/Blockout-backend)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/16lim21/Blockout-backend/Django%20CI)
 ![Codecov](https://img.shields.io/codecov/c/github/16lim21/Blockout-backend)
