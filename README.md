@@ -41,3 +41,5 @@ The purpose of this application is to connect with a user's google calendar and 
 ## Developer Documentation
 Check out our [Contributing Documentation](CONTRIBUTING.md) and [Code of Conduct](CODE_OF_CONDUCT.md)
 
+## User Documentation
+Work in Progress. Will add more once the application moves towards a more completed state. 
